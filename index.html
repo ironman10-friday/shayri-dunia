@@ -1,1072 +1,1156 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shayari Duniya — The World of Poetry</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Devanagari:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#1a0a00;--parchment:#f5ead4;--gold:#c9a84c;--gold-l:#e8c87a;
-  --rose:#8b2252;--rose-l:#c4547a;--teal:#1a5f6a;--deep:#0d0604;
+  --gold:#c9a84c;--gl:#e8c87a;--rose:#8b2252;--rl:#c4547a;
+  --teal:#1a5f6a;--deep:#0d0604;--ink:#1a0a00;--pg:#f5ead4;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--deep);color:var(--parchment);font-family:'Cormorant Garamond',serif;overflow-x:hidden;}
+body{background:var(--deep);color:var(--pg);font-family:'Cormorant Garamond',serif;overflow-x:hidden;}
 
-/* ── AMBIENT ── */
-#ambient{position:fixed;inset:0;z-index:0;pointer-events:none;
-background:radial-gradient(ellipse at 20% 20%,#2a0a1a,transparent 60%),
-radial-gradient(ellipse at 80% 80%,#0a1a2a,transparent 60%),
-radial-gradient(ellipse at 50% 50%,#1a0d00,#080304);}
-.petal{position:fixed;pointer-events:none;z-index:1;border-radius:0 80% 0 80%;opacity:0;animation:petalFall linear infinite;}
-@keyframes petalFall{0%{transform:translateY(-20px) rotate(0deg);opacity:.6}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+/* AMBIENT */
+#amb{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 20% 20%,#2a0a1a,transparent 60%),
+             radial-gradient(ellipse at 80% 80%,#0a1a2a,transparent 60%),
+             radial-gradient(ellipse at 50% 50%,#1a0d00,#080304);}
+.petal{position:fixed;pointer-events:none;z-index:1;border-radius:0 80% 0 80%;opacity:0;animation:pfall linear infinite;}
+@keyframes pfall{0%{transform:translateY(-20px)rotate(0deg);opacity:.5}100%{transform:translateY(110vh)rotate(720deg);opacity:0}}
 
-/* ── HEADER ── */
-header{position:relative;z-index:10;text-align:center;padding:48px 20px 34px;border-bottom:1px solid rgba(201,168,76,.2);}
-.logo-urdu{font-family:‘Noto Nastaliq Urdu’,serif;font-size:clamp(1.8rem,6vw,3.8rem);color:var(–gold);display:block;direction:rtl;line-height:1.8;animation:glow 3s ease-in-out infinite alternate;}
-.logo-en{font-family:‘Cinzel’,serif;font-size:clamp(.62rem,2vw,.9rem);letter-spacing:.4em;color:rgba(201,168,76,.55);margin-top:6px;text-transform:uppercase;}
-.tagline{font-family:‘Playfair Display’,serif;font-style:italic;color:rgba(245,234,212,.42);font-size:.92rem;margin-top:8px;}
+/* ═══ HEADER ═══ */
+header{position:relative;z-index:10;text-align:center;padding:42px 20px 28px;border-bottom:1px solid rgba(201,168,76,.2);}
+.logo-u{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.7rem,5.5vw,3.5rem);color:var(--gold);display:block;direction:rtl;line-height:1.8;animation:glow 3s ease-in-out infinite alternate;}
+.logo-h{font-family:'Noto Sans Devanagari',sans-serif;font-size:clamp(.8rem,2vw,1.05rem);color:rgba(201,168,76,.65);margin-top:3px;}
+.logo-e{font-family:'Cinzel',serif;font-size:clamp(.58rem,1.6vw,.85rem);letter-spacing:.36em;color:rgba(201,168,76,.45);margin-top:2px;text-transform:uppercase;}
+.tagline{font-family:'Playfair Display',serif;font-style:italic;color:rgba(245,234,212,.38);font-size:.88rem;margin-top:7px;}
 @keyframes glow{from{text-shadow:0 0 20px rgba(201,168,76,.3)}to{text-shadow:0 0 60px rgba(201,168,76,.7),0 0 100px rgba(201,168,76,.3)}}
 
-/* ── NAV ── */
-nav{position:sticky;top:0;z-index:100;background:rgba(13,6,4,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.14);display:flex;align-items:center;justify-content:space-between;padding:0 16px;flex-wrap:wrap;}
-.nav-tabs{display:flex;}
-.nav-tab{font-family:‘Cinzel’,serif;font-size:.64rem;letter-spacing:.1em;color:rgba(245,234,212,.48);padding:14px 11px;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all .3s;text-transform:uppercase;white-space:nowrap;}
-.nav-tab:hover,.nav-tab.active{color:var(–gold);border-bottom-color:var(–gold);}
-.nav-right{display:flex;gap:8px;align-items:center;padding:6px 0;}
-.btn-gold{background:linear-gradient(135deg,var(–gold),var(–rose));color:var(–ink);font-family:‘Cinzel’,serif;font-size:.62rem;letter-spacing:.1em;padding:7px 14px;border:none;border-radius:2px;cursor:pointer;font-weight:700;transition:all .3s;}
-.btn-gold:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(201,168,76,.4);}
-.btn-ghost{background:transparent;color:var(–gold);border:1px solid rgba(201,168,76,.38);font-family:‘Cinzel’,serif;font-size:.62rem;letter-spacing:.1em;padding:7px 14px;border-radius:2px;cursor:pointer;transition:all .3s;}
-.btn-ghost:hover{background:rgba(201,168,76,.1);}
+/* ═══ NAV ═══ */
+nav{position:sticky;top:0;z-index:100;background:rgba(13,6,4,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.13);display:flex;align-items:center;justify-content:space-between;padding:0 14px;flex-wrap:wrap;}
+.ntabs{display:flex;}
+.ntab{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.09em;color:rgba(245,234,212,.44);padding:13px 11px;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all .3s;text-transform:uppercase;white-space:nowrap;}
+.ntab:hover,.ntab.on{color:var(--gold);border-bottom-color:var(--gold);}
+.nright{display:flex;gap:6px;align-items:center;padding:5px 0;}
+.btn-g{background:linear-gradient(135deg,var(--gold),var(--rose));color:var(--ink);font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.1em;padding:6px 13px;border:none;border-radius:2px;cursor:pointer;font-weight:700;transition:all .3s;}
+.btn-g:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(201,168,76,.4);}
+.btn-o{background:transparent;color:var(--gold);border:1px solid rgba(201,168,76,.34);font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.1em;padding:6px 13px;border-radius:2px;cursor:pointer;transition:all .3s;}
+.btn-o:hover{background:rgba(201,168,76,.1);}
 
+/* ═══ PAGES ═══ */
 main{position:relative;z-index:5;}
-.section{display:none;}.section.active{display:block;}
+.page{display:none;min-height:80vh;}
+.page.on{display:block;}
 
-/* ── SEARCH ── */
-.search-row{padding:14px 20px;display:flex;justify-content:center;}
-.s-box{display:flex;align-items:center;width:100%;max-width:540px;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.28);border-radius:28px;overflow:hidden;transition:border-color .3s;}
-.s-box:focus-within{border-color:var(–gold);}
-.s-icon{padding:9px 13px;color:rgba(201,168,76,.55);flex-shrink:0;}
-.s-inp{flex:1;background:transparent;border:none;outline:none;color:var(–parchment);font-family:‘Cormorant Garamond’,serif;font-size:.98rem;padding:9px 0;}
-.s-inp::placeholder{color:rgba(245,234,212,.28);}
-.s-clr{padding:9px 13px;color:rgba(245,234,212,.35);cursor:pointer;font-size:.88rem;background:none;border:none;transition:color .3s;}
-.s-clr:hover{color:var(–gold);}
+/* script toggle */
+.sbar{display:flex;align-items:center;justify-content:center;gap:7px;padding:9px 16px;background:rgba(0,0,0,.28);border-bottom:1px solid rgba(201,168,76,.09);}
+.slbl{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.18em;color:rgba(245,234,212,.38);text-transform:uppercase;}
+.sb{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.07em;padding:3px 11px;border-radius:13px;cursor:pointer;border:1px solid rgba(201,168,76,.22);background:transparent;color:rgba(245,234,212,.46);transition:all .24s;}
+.sb:hover{background:rgba(201,168,76,.09);}
+.sb.on{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:700;}
 
-/* ── EXPLORE HERO ── */
-.ex-hero{padding:38px 20px 14px;text-align:center;}
-.ex-title{font-family:‘Playfair Display’,serif;font-size:clamp(1.55rem,4.5vw,2.9rem);font-style:italic;color:var(–gold-l);line-height:1.2;}
+/* search */
+.srow{padding:12px 16px;display:flex;justify-content:center;}
+.sbox{display:flex;align-items:center;width:100%;max-width:520px;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.24);border-radius:24px;overflow:hidden;transition:border-color .3s;}
+.sbox:focus-within{border-color:var(--gold);}
+.si{padding:9px 12px;color:rgba(201,168,76,.48);flex-shrink:0;}
+.sinp{flex:1;background:transparent;border:none;outline:none;color:var(--pg);font-family:'Cormorant Garamond',serif;font-size:.95rem;padding:9px 0;}
+.sinp::placeholder{color:rgba(245,234,212,.24);}
+.sclr{padding:9px 12px;color:rgba(245,234,212,.3);cursor:pointer;font-size:.84rem;background:none;border:none;transition:color .3s;}
+.sclr:hover{color:var(--gold);}
 
-/* ── FILTER BAR ── */
-.fbar{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:13px 18px;position:sticky;top:49px;z-index:90;background:rgba(13,6,4,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1);}
-.chip{font-family:‘Cinzel’,serif;font-size:.56rem;letter-spacing:.1em;padding:5px 12px;border:1px solid rgba(201,168,76,.26);border-radius:18px;cursor:pointer;color:rgba(245,234,212,.62);background:transparent;transition:all .3s;white-space:nowrap;}
-.chip:hover{background:rgba(201,168,76,.1);}
-.chip.on{background:var(–gold);color:var(–ink);border-color:var(–gold);}
-.chip.rose.on{background:var(–rose);border-color:var(–rose);color:#fff;}
-.chip.teal.on{background:var(–teal);border-color:var(–teal);color:#fff;}
+/* filter bar */
+.fbar{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:11px 14px;position:sticky;top:47px;z-index:90;background:rgba(13,6,4,.9);backdrop-filter:blur(13px);border-bottom:1px solid rgba(201,168,76,.08);}
+.chip{font-family:'Cinzel',serif;font-size:.53rem;letter-spacing:.09em;padding:4px 10px;border:1px solid rgba(201,168,76,.22);border-radius:15px;cursor:pointer;color:rgba(245,234,212,.58);background:transparent;transition:all .26s;white-space:nowrap;}
+.chip:hover{background:rgba(201,168,76,.09);}
+.chip.on{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.chip.rose.on{background:var(--rose);border-color:var(--rose);color:#fff;}
+.chip.teal.on{background:var(--teal);border-color:var(--teal);color:#fff;}
 .chip.blue.on{background:#2a3a7a;border-color:#4a5aaa;color:#b0b8e8;}
+.chip.saffron.on{background:#b5451b;border-color:#d4621f;color:#fff;}
 
-/* ── POETS GRID ── */
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:17px;padding:20px 18px;max-width:1400px;margin:0 auto;}
-.pcard{border-radius:5px;overflow:hidden;position:relative;cursor:pointer;transition:transform .36s,box-shadow .36s;border:1px solid rgba(201,168,76,.13);animation:fadeUp .5s ease both;}
-.pcard:hover{transform:translateY(-6px);box-shadow:0 18px 52px rgba(0,0,0,.72),0 0 26px rgba(201,168,76,.11);}
-@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
-.pcard-img{width:100%;height:188px;background-size:cover;background-position:center;}
-.pcard-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,6,4,.97) 26%,transparent 66%);}
-.pcard-body{position:absolute;bottom:0;left:0;right:0;padding:15px;}
-.pc-region{font-family:‘Cinzel’,serif;font-size:.53rem;letter-spacing:.2em;color:var(–gold);text-transform:uppercase;margin-bottom:2px;}
-.pc-name{font-family:‘Playfair Display’,serif;font-size:1.18rem;color:#fff;font-weight:700;}
-.pc-native{font-family:‘Noto Nastaliq Urdu’,serif;font-size:.82rem;color:var(–gold-l);direction:rtl;}
-.pc-era{font-style:italic;font-size:.66rem;color:rgba(245,234,212,.48);margin-top:3px;}
-.pc-tags{display:flex;gap:3px;flex-wrap:wrap;margin-top:5px;}
-.tag{font-family:‘Cinzel’,serif;font-size:.48rem;letter-spacing:.06em;padding:2px 7px;border:1px solid rgba(201,168,76,.26);border-radius:9px;color:var(–gold);}
-.empty{color:rgba(245,234,212,.35);text-align:center;padding:52px;font-style:italic;grid-column:1/-1;font-size:1rem;}
+/* explore hero */
+.exhero{padding:34px 16px 10px;text-align:center;}
+.exhero-t{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.7rem);font-style:italic;color:var(--gl);line-height:1.2;}
+.exhero-h{font-family:'Noto Sans Devanagari',sans-serif;font-size:clamp(.8rem,1.8vw,1rem);color:rgba(201,168,76,.58);margin-top:4px;}
 
-/* ── MAP ── */
-.map-wrap{padding:26px 18px;max-width:1400px;margin:0 auto;}
-.map-ttl{font-family:‘Cinzel’,serif;font-size:.74rem;letter-spacing:.3em;color:var(–gold);text-align:center;margin-bottom:24px;text-transform:uppercase;}
-.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:13px;}
-.rcard{border:1px solid rgba(201,168,76,.18);border-radius:5px;overflow:hidden;cursor:pointer;transition:all .3s;}
-.rcard:hover{border-color:var(–gold);transform:scale(1.025);}
-.rcard-bg{height:122px;background-size:cover;background-position:center;position:relative;}
-.rcard-ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(13,6,4,.62);transition:background .3s;padding:8px;}
-.rcard:hover .rcard-ov{background:rgba(13,6,4,.32);}
-.r-name{font-family:‘Cinzel’,serif;font-size:.76rem;letter-spacing:.14em;color:var(–gold-l);text-transform:uppercase;text-align:center;}
-.r-sub{font-size:.63rem;color:rgba(245,234,212,.55);margin-top:3px;text-align:center;}
-.r-cnt{margin-top:4px;font-family:‘Cinzel’,serif;font-size:.52rem;color:var(–gold);letter-spacing:.1em;}
+/* poet cards grid */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:15px;padding:16px 14px;max-width:1400px;margin:0 auto;}
+.pc{border-radius:6px;overflow:hidden;position:relative;cursor:pointer;transition:transform .34s,box-shadow .34s;border:1px solid rgba(201,168,76,.11);animation:fup .48s ease both;}
+.pc:hover{transform:translateY(-5px);box-shadow:0 16px 46px rgba(0,0,0,.72),0 0 22px rgba(201,168,76,.1);}
+@keyframes fup{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.pc-img{width:100%;height:176px;background-size:cover;background-position:center top;}
+.pc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,6,4,.97) 22%,transparent 62%);}
+.pc-bd{position:absolute;bottom:0;left:0;right:0;padding:13px;}
+.pc-reg{font-family:'Cinzel',serif;font-size:.49rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:2px;}
+.pc-name{font-family:'Playfair Display',serif;font-size:1.12rem;color:#fff;font-weight:700;}
+.pc-nat{font-family:'Noto Nastaliq Urdu',serif;font-size:.78rem;color:var(--gl);direction:rtl;}
+.pc-nat.deva{font-family:'Noto Sans Devanagari',sans-serif;direction:ltr;font-size:.78rem;}
+.pc-era{font-style:italic;font-size:.62rem;color:rgba(245,234,212,.44);margin-top:3px;}
+.pctags{display:flex;gap:3px;flex-wrap:wrap;margin-top:4px;}
+.tag{font-family:'Cinzel',serif;font-size:.46rem;padding:2px 6px;border:1px solid rgba(201,168,76,.22);border-radius:8px;color:var(--gold);}
+.open-btn{position:absolute;top:10px;right:10px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.1em;padding:4px 9px;border-radius:12px;cursor:pointer;transition:all .25s;backdrop-filter:blur(4px);}
+.open-btn:hover{background:var(--gold);color:var(--ink);}
+.empty{color:rgba(245,234,212,.3);text-align:center;padding:48px;font-style:italic;grid-column:1/-1;}
 
-/* ── FEED ── */
-.feed-wrap{max-width:650px;margin:0 auto;padding:22px 16px;}
-.fcard{border-radius:5px;overflow:hidden;margin-bottom:19px;border:1px solid rgba(201,168,76,.13);animation:fadeUp .5s ease both;}
-.fcard-bg{min-height:285px;background-size:cover;background-position:center;position:relative;display:flex;flex-direction:column;justify-content:flex-end;}
-.fcard-ov{position:absolute;inset:0;}
-.fcard-body{position:relative;z-index:2;padding:22px;}
-.fcard-rtl{font-family:‘Noto Nastaliq Urdu’,serif;font-size:clamp(1.05rem,3vw,1.38rem);direction:rtl;text-align:right;line-height:2.2;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.85);margin-bottom:11px;}
-.fcard-ltr{font-family:‘Playfair Display’,serif;font-size:clamp(.92rem,2.2vw,1.08rem);direction:ltr;text-align:left;line-height:1.9;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.8);margin-bottom:11px;}
-.fcard-trans{font-family:‘Playfair Display’,serif;font-style:italic;font-size:.84rem;color:rgba(245,234,212,.68);line-height:1.8;margin-bottom:11px;border-left:2px solid var(–gold);padding-left:11px;}
-.fcard-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px;}
-.fcard-author{font-family:‘Cinzel’,serif;font-size:.63rem;letter-spacing:.1em;color:var(–gold);text-transform:uppercase;}
-.fcard-comm{font-family:‘Cinzel’,serif;font-size:.48rem;color:var(–rose-l);margin-top:2px;letter-spacing:.06em;}
-.fcard-acts{display:flex;gap:6px;flex-wrap:wrap;}
-.abtn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.17);color:#fff;font-size:.68rem;padding:5px 10px;border-radius:16px;cursor:pointer;transition:all .28s;display:flex;align-items:center;gap:3px;white-space:nowrap;font-family:‘Cinzel’,serif;letter-spacing:.05em;}
-.abtn:hover{background:rgba(201,168,76,.18);border-color:var(–gold);}
-.abtn.liked{color:#ff6b8a;border-color:#ff6b8a;}
-.abtn.del{color:rgba(196,84,122,.8);border-color:rgba(196,84,122,.32);}
-.abtn.del:hover{background:rgba(139,34,82,.28);color:#fff;}
+/* ═══ POET FULL PAGE ═══ */
+#page-poet{background:var(--deep);}
+.pp-back{position:sticky;top:47px;z-index:50;background:rgba(13,6,4,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1);padding:10px 18px;display:flex;align-items:center;gap:10px;}
+.pp-back-btn{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.12em;padding:6px 14px;border-radius:3px;cursor:pointer;transition:all .26s;}
+.pp-back-btn:hover{background:rgba(201,168,76,.22);}
+.pp-breadcrumb{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.1em;color:rgba(245,234,212,.36);text-transform:uppercase;}
 
-/* ── CREATE ── */
-.create-wrap{max-width:650px;margin:0 auto;padding:26px 16px 60px;}
-.c-title{font-family:‘Playfair Display’,serif;font-size:1.8rem;font-style:italic;color:var(–gold-l);margin-bottom:4px;}
-.c-sub{font-size:.82rem;color:rgba(245,234,212,.44);margin-bottom:24px;font-style:italic;}
-.fg{margin-bottom:16px;}
-.flabel{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;}
-.flabel-text{font-family:‘Cinzel’,serif;font-size:.58rem;letter-spacing:.2em;color:var(–gold);text-transform:uppercase;}
+/* HERO SECTION */
+.pp-hero{position:relative;min-height:500px;display:flex;align-items:flex-end;overflow:hidden;}
+.pp-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center top;filter:saturate(.7);}
+.pp-hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,6,4,1) 18%,rgba(13,6,4,.55) 55%,rgba(13,6,4,.15) 100%);}
+.pp-hero-content{position:relative;z-index:2;padding:40px 24px 30px;display:flex;gap:28px;align-items:flex-end;flex-wrap:wrap;max-width:1100px;margin:0 auto;width:100%;}
+/* portrait oval */
+.pp-portrait{width:140px;height:180px;border-radius:50% 50% 45% 45%;overflow:hidden;border:3px solid rgba(201,168,76,.5);box-shadow:0 0 40px rgba(201,168,76,.2),0 8px 30px rgba(0,0,0,.8);flex-shrink:0;background-size:cover;background-position:center top;}
+.pp-title{flex:1;min-width:200px;}
+.pp-name{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-style:italic;color:#fff;line-height:1.1;text-shadow:0 2px 20px rgba(0,0,0,.8);}
+.pp-native{font-family:'Noto Nastaliq Urdu',serif;direction:rtl;font-size:1.3rem;color:var(--gold);margin-top:4px;}
+.pp-native.deva{font-family:'Noto Sans Devanagari',sans-serif;direction:ltr;}
+.pp-meta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;}
+.pp-badge{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.12em;padding:4px 12px;border:1px solid rgba(201,168,76,.38);border-radius:14px;color:var(--gold);text-transform:uppercase;}
 
-/* ── DIRECTION TOGGLE ── */
-.dir-toggle{display:flex;align-items:center;gap:4px;}
-.dir-hint{font-family:‘Cinzel’,serif;font-size:.5rem;color:rgba(245,234,212,.35);letter-spacing:.08em;margin-right:4px;}
-.dir-btn{font-family:‘Cinzel’,serif;font-size:.56rem;letter-spacing:.08em;padding:4px 10px;border-radius:12px;cursor:pointer;border:1px solid rgba(201,168,76,.28);background:transparent;color:rgba(245,234,212,.48);transition:all .25s;white-space:nowrap;}
-.dir-btn:hover{background:rgba(201,168,76,.12);color:var(–parchment);}
-.dir-btn.active{background:var(–gold);color:var(–ink);border-color:var(–gold);font-weight:700;}
+/* bio + stats */
+.pp-body{max-width:1100px;margin:0 auto;padding:30px 20px;display:grid;grid-template-columns:1fr 300px;gap:28px;}
+.pp-left{min-width:0;}
+.pp-right{min-width:0;}
+.pp-section-title{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.18);}
+.pp-bio{font-size:.95rem;line-height:2;color:rgba(245,234,212,.78);margin-bottom:24px;}
+.pp-bio p{margin-bottom:12px;}
 
-/* ── FORM INPUTS ── */
-.finput,.fselect{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.22);border-radius:4px;color:var(–parchment);font-family:‘Cormorant Garamond’,serif;font-size:.98rem;padding:10px 13px;transition:border-color .3s;outline:none;}
-.finput:focus,.fselect:focus{border-color:var(–gold);background:rgba(201,168,76,.04);}
-.fselect option{background:#1a0a00;}
-.ftawrap{position:relative;}
-.fta{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.22);border-radius:4px;color:var(–parchment);padding:12px 13px 12px 13px;transition:border-color .3s;resize:vertical;min-height:108px;outline:none;line-height:1.9;font-size:1rem;font-family:‘Cormorant Garamond’,serif;}
-.fta:focus{border-color:var(–gold);background:rgba(201,168,76,.04);}
-/* RTL state */
-.fta.rtl{direction:rtl;text-align:right;font-family:‘Noto Nastaliq Urdu’,serif;font-size:1.18rem;line-height:2.1;}
-/* LTR state */
-.fta.ltr{direction:ltr;text-align:left;font-family:‘Playfair Display’,serif;font-size:1rem;line-height:1.85;}
-.clr-btn{position:absolute;top:7px;right:7px;background:rgba(139,34,82,.18);border:1px solid rgba(139,34,82,.36);color:var(–rose-l);font-size:.62rem;padding:3px 8px;border-radius:3px;cursor:pointer;transition:all .25s;font-family:‘Cinzel’,serif;letter-spacing:.06em;}
-.clr-btn:hover{background:rgba(139,34,82,.38);color:#fff;}
-.fhint{font-size:.66rem;color:rgba(245,234,212,.3);margin-top:4px;font-style:italic;}
+/* shayaris */
+.pp-shers{display:flex;flex-direction:column;gap:18px;margin-bottom:28px;}
+.pp-sher{background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(201,168,76,.03));border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:18px 20px;position:relative;}
+.pp-sher:hover{border-left-color:var(--gl);background:rgba(201,168,76,.06);}
+.pp-sher-num{position:absolute;top:10px;right:14px;font-family:'Cinzel',serif;font-size:.5rem;color:rgba(201,168,76,.3);letter-spacing:.1em;}
+.sher-u{font-family:'Noto Nastaliq Urdu',serif;direction:rtl;text-align:right;font-size:1.08rem;line-height:2.1;color:#fff;margin-bottom:5px;}
+.sher-h{font-family:'Noto Sans Devanagari',sans-serif;direction:ltr;font-size:.9rem;line-height:1.85;color:rgba(255,255,200,.82);margin-bottom:4px;}
+.sher-e{font-family:'Playfair Display',serif;font-style:italic;font-size:.86rem;line-height:1.78;color:rgba(245,234,212,.65);margin-bottom:6px;}
+.sher-meaning{font-size:.76rem;line-height:1.7;color:rgba(245,234,212,.44);border-top:1px solid rgba(201,168,76,.1);padding-top:7px;margin-top:7px;font-style:italic;}
+.sher-acts{display:flex;gap:6px;margin-top:8px;}
+.sher-act{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(245,234,212,.6);font-size:.6rem;padding:3px 9px;border-radius:12px;cursor:pointer;transition:all .24s;font-family:'Cinzel',serif;letter-spacing:.04em;}
+.sher-act:hover{background:rgba(201,168,76,.18);border-color:var(--gold);color:var(--gold);}
 
-/* ── BG PICKER ── */
-.bg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:7px;margin-top:7px;}
-.bg-opt{height:52px;border-radius:4px;cursor:pointer;border:2px solid transparent;transition:all .28s;background-size:cover;background-position:center;position:relative;overflow:hidden;}
-.bg-opt::after{content:attr(data-l);position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.74);color:#fff;font-size:.46rem;text-align:center;padding:3px;font-family:‘Cinzel’,serif;letter-spacing:.04em;}
-.bg-opt:hover,.bg-opt.sel{border-color:var(–gold);transform:scale(1.06);}
+/* sidebar */
+.pp-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.15);border-radius:5px;padding:18px;margin-bottom:16px;}
+.pp-fact{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid rgba(201,168,76,.08);gap:10px;}
+.pp-fact:last-child{border:none;}
+.pp-fk{font-family:'Cinzel',serif;font-size:.54rem;letter-spacing:.14em;color:rgba(201,168,76,.6);text-transform:uppercase;white-space:nowrap;}
+.pp-fv{font-size:.82rem;color:rgba(245,234,212,.76);text-align:right;line-height:1.5;}
+.pp-works-list{list-style:none;}
+.pp-works-list li{font-size:.82rem;color:rgba(245,234,212,.7);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);line-height:1.5;}
+.pp-works-list li::before{content:'✦ ';color:var(--gold);font-size:.6rem;}
+.pp-timeline{font-size:.78rem;color:rgba(245,234,212,.5);line-height:1.8;font-style:italic;}
 
-/* ── PREVIEW ── */
-.preview-wrap{border:1px solid rgba(201,168,76,.26);border-radius:4px;overflow:hidden;min-height:180px;position:relative;margin-top:7px;}
-.preview-bg{min-height:180px;background-size:cover;background-position:center;display:flex;align-items:flex-end;position:relative;}
-.preview-ov{position:absolute;inset:0;}
-.preview-in{position:relative;z-index:2;padding:18px;width:100%;}
-.preview-text{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.9);transition:all .3s;}
-.preview-text.rtl{font-family:‘Noto Nastaliq Urdu’,serif;direction:rtl;text-align:right;font-size:1.2rem;line-height:2.2;}
-.preview-text.ltr{font-family:‘Playfair Display’,serif;direction:ltr;text-align:left;font-size:1rem;line-height:1.85;}
+/* MAP */
+.mwrap{padding:22px 14px;max-width:1400px;margin:0 auto;}
+.mttl{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.26em;color:var(--gold);text-align:center;margin-bottom:20px;text-transform:uppercase;}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:11px;}
+.rcard{border:1px solid rgba(201,168,76,.16);border-radius:5px;overflow:hidden;cursor:pointer;transition:all .3s;}
+.rcard:hover{border-color:var(--gold);transform:scale(1.024);}
+.rbg{height:115px;background-size:cover;background-position:center;position:relative;}
+.rov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(13,6,4,.58);transition:background .3s;padding:6px;}
+.rcard:hover .rov{background:rgba(13,6,4,.28);}
+.rn{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.12em;color:var(--gl);text-transform:uppercase;text-align:center;}
+.rs{font-size:.6rem;color:rgba(245,234,212,.52);margin-top:2px;text-align:center;}
+.rc{margin-top:3px;font-family:'Cinzel',serif;font-size:.48rem;color:var(--gold);}
 
-/* ── MUSIC PLAYER ── */
-.player{position:fixed;bottom:18px;right:18px;z-index:200;background:rgba(10,4,2,.97);backdrop-filter:blur(22px);border:1px solid rgba(201,168,76,.3);border-radius:14px;width:295px;box-shadow:0 16px 52px rgba(0,0,0,.88);transition:all .38s;}
-.player.mini{width:50px;height:50px;border-radius:50%;}
-.player.mini .pbody,.player.mini .ptitle{display:none;}
-.player.mini .pheader{padding:0;width:50px;height:50px;border:none;display:flex;align-items:center;justify-content:center;}
-.player.mini .ptoggle{font-size:1.2rem;}
-.pheader{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-bottom:1px solid rgba(201,168,76,.1);}
-.ptitle{font-family:‘Cinzel’,serif;font-size:.56rem;letter-spacing:.2em;color:var(–gold);text-transform:uppercase;}
-.ptoggle{background:none;border:none;color:var(–gold);cursor:pointer;font-size:.88rem;line-height:1;padding:2px;}
-.pbody{padding:12px;}
-.pnow{font-family:‘Playfair Display’,serif;font-style:italic;font-size:.78rem;color:var(–parchment);margin-bottom:9px;line-height:1.4;min-height:2em;}
-.pstatus{font-size:.58rem;color:rgba(201,168,76,.65);text-align:center;margin-bottom:6px;font-family:‘Cinzel’,serif;letter-spacing:.08em;min-height:1em;}
-.pctrls{display:flex;align-items:center;gap:6px;margin-bottom:9px;}
-.pbtn{background:none;border:none;color:rgba(245,234,212,.65);cursor:pointer;font-size:.92rem;transition:color .2s;padding:3px;}
-.pbtn:hover{color:var(–gold);}
-.pplay{width:31px;height:31px;background:var(–gold);border-radius:50%;color:var(–ink);display:flex;align-items:center;justify-content:center;font-size:.8rem;}
-.pplay:hover{background:var(–gold-l);}
-.progbar{background:rgba(255,255,255,.1);height:3px;border-radius:2px;overflow:hidden;margin-bottom:7px;cursor:pointer;}
-.progfill{background:linear-gradient(90deg,var(–rose),var(–gold));height:100%;border-radius:2px;width:0%;transition:width .3s linear;}
-.volrow{display:flex;align-items:center;gap:6px;margin-bottom:8px;}
-.volicon{font-size:.72rem;color:rgba(245,234,212,.44);}
-.volslider{flex:1;height:3px;appearance:none;background:rgba(255,255,255,.11);border-radius:2px;cursor:pointer;}
-.volslider::-webkit-slider-thumb{appearance:none;width:10px;height:10px;border-radius:50%;background:var(–gold);cursor:pointer;}
-.plist{max-height:130px;overflow-y:auto;border-top:1px solid rgba(201,168,76,.1);padding-top:7px;}
+/* FEED */
+.fwrap{max-width:640px;margin:0 auto;padding:18px 14px;}
+.fcard{border-radius:5px;overflow:hidden;margin-bottom:17px;border:1px solid rgba(201,168,76,.11);animation:fup .48s ease both;}
+.fbg{min-height:270px;background-size:cover;background-position:center;position:relative;display:flex;flex-direction:column;justify-content:flex-end;}
+.fov{position:absolute;inset:0;}
+.fbod{position:relative;z-index:2;padding:20px;}
+.v-u{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1rem,2.7vw,1.33rem);direction:rtl;text-align:right;line-height:2.2;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.88);margin-bottom:10px;}
+.v-h{font-family:'Noto Sans Devanagari',sans-serif;font-size:clamp(.86rem,2.1vw,1rem);line-height:1.88;color:rgba(255,255,220,.88);text-shadow:0 2px 8px rgba(0,0,0,.8);margin-bottom:10px;}
+.v-e{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(.8rem,1.9vw,.95rem);line-height:1.84;color:rgba(245,234,212,.75);text-shadow:0 2px 6px rgba(0,0,0,.7);margin-bottom:10px;}
+.v-t{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.8rem;color:rgba(245,234,212,.58);line-height:1.75;margin-bottom:10px;border-left:2px solid var(--gold);padding-left:10px;}
+.fmeta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+.fauth{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;}
+.fcomm{font-family:'Cinzel',serif;font-size:.44rem;color:var(--rl);margin-top:1px;letter-spacing:.06em;}
+.facts{display:flex;gap:5px;flex-wrap:wrap;}
+.ab{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#fff;font-size:.64rem;padding:4px 9px;border-radius:14px;cursor:pointer;transition:all .24s;display:flex;align-items:center;gap:3px;white-space:nowrap;font-family:'Cinzel',serif;letter-spacing:.04em;}
+.ab:hover{background:rgba(201,168,76,.15);border-color:var(--gold);}
+.ab.liked{color:#ff6b8a;border-color:#ff6b8a;}
+.ab.del{color:rgba(196,84,122,.72);border-color:rgba(196,84,122,.28);}
+.ab.del:hover{background:rgba(139,34,82,.24);color:#fff;}
+
+/* CREATE */
+.cwrap{max-width:640px;margin:0 auto;padding:22px 14px 55px;}
+.ct{font-family:'Playfair Display',serif;font-size:1.7rem;font-style:italic;color:var(--gl);margin-bottom:4px;}
+.cs{font-size:.78rem;color:rgba(245,234,212,.4);margin-bottom:20px;font-style:italic;}
+.fg{margin-bottom:14px;}
+.fl{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;}
+.flt{font-family:'Cinzel',serif;font-size:.54rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;}
+.dtog{display:flex;align-items:center;gap:4px;}
+.db{font-family:'Cinzel',serif;font-size:.52rem;padding:3px 8px;border-radius:10px;cursor:pointer;border:1px solid rgba(201,168,76,.22);background:transparent;color:rgba(245,234,212,.42);transition:all .22s;white-space:nowrap;}
+.db:hover{background:rgba(201,168,76,.09);}
+.db.on{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:700;}
+.fi,.fse{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.19);border-radius:4px;color:var(--pg);font-family:'Cormorant Garamond',serif;font-size:.95rem;padding:9px 11px;transition:border-color .3s;outline:none;}
+.fi:focus,.fse:focus{border-color:var(--gold);background:rgba(201,168,76,.04);}
+.fse option{background:#1a0a00;}
+.taw{position:relative;}
+.ta{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.19);border-radius:4px;color:var(--pg);padding:10px 11px;transition:border-color .3s;resize:vertical;min-height:96px;outline:none;line-height:1.9;font-size:.95rem;font-family:'Cormorant Garamond',serif;}
+.ta:focus{border-color:var(--gold);background:rgba(201,168,76,.04);}
+.ta.rtl{direction:rtl;text-align:right;font-family:'Noto Nastaliq Urdu',serif;font-size:1.12rem;line-height:2.1;}
+.ta.deva{direction:ltr;font-family:'Noto Sans Devanagari',sans-serif;font-size:.96rem;line-height:1.85;}
+.ta.ltr{direction:ltr;font-family:'Playfair Display',serif;font-size:.94rem;line-height:1.85;}
+.clrb{position:absolute;top:6px;right:6px;background:rgba(139,34,82,.15);border:1px solid rgba(139,34,82,.3);color:var(--rl);font-size:.56rem;padding:3px 7px;border-radius:3px;cursor:pointer;transition:all .22s;font-family:'Cinzel',serif;}
+.clrb:hover{background:rgba(139,34,82,.34);color:#fff;}
+.fhint{font-size:.6rem;color:rgba(245,234,212,.26);margin-top:3px;font-style:italic;}
+.bggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:6px;margin-top:6px;}
+.bgo{height:48px;border-radius:3px;cursor:pointer;border:2px solid transparent;transition:all .25s;background-size:cover;background-position:center;position:relative;overflow:hidden;}
+.bgo::after{content:attr(data-l);position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.72);color:#fff;font-size:.42rem;text-align:center;padding:2px;font-family:'Cinzel',serif;}
+.bgo:hover,.bgo.sel{border-color:var(--gold);transform:scale(1.06);}
+.pvw{border:1px solid rgba(201,168,76,.22);border-radius:4px;overflow:hidden;min-height:170px;position:relative;margin-top:6px;}
+.pvbg{min-height:170px;background-size:cover;background-position:center;display:flex;align-items:flex-end;position:relative;}
+.pvov{position:absolute;inset:0;}
+.pvin{position:relative;z-index:2;padding:16px;width:100%;}
+.pvt{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.9);transition:all .3s;}
+.pvt.rtl{font-family:'Noto Nastaliq Urdu',serif;direction:rtl;text-align:right;font-size:1.12rem;line-height:2.2;}
+.pvt.deva{font-family:'Noto Sans Devanagari',sans-serif;direction:ltr;font-size:.94rem;line-height:1.85;}
+.pvt.ltr{font-family:'Playfair Display',serif;direction:ltr;font-size:.92rem;line-height:1.85;}
+
+/* MUSIC PLAYER */
+.player{position:fixed;bottom:16px;right:16px;z-index:200;background:rgba(10,4,2,.97);backdrop-filter:blur(22px);border:1px solid rgba(201,168,76,.27);border-radius:13px;width:284px;box-shadow:0 13px 48px rgba(0,0,0,.88);transition:all .36s;}
+.player.mini{width:46px;height:46px;border-radius:50%;}
+.player.mini .pbod,.player.mini .pttl{display:none;}
+.player.mini .phdr{padding:0;width:46px;height:46px;border:none;display:flex;align-items:center;justify-content:center;}
+.player.mini .ptog{font-size:1.15rem;}
+.phdr{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid rgba(201,168,76,.08);}
+.pttl{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;}
+.ptog{background:none;border:none;color:var(--gold);cursor:pointer;font-size:.84rem;line-height:1;padding:2px;}
+.pbod{padding:11px 12px;}
+.pnow{font-family:'Playfair Display',serif;font-style:italic;font-size:.75rem;color:var(--pg);margin-bottom:8px;line-height:1.4;min-height:1.85em;}
+.pst{font-size:.52rem;color:rgba(201,168,76,.58);text-align:center;margin-bottom:5px;font-family:'Cinzel',serif;letter-spacing:.07em;min-height:.85em;}
+.pctl{display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+.pbtn{background:none;border:none;color:rgba(245,234,212,.62);cursor:pointer;font-size:.88rem;transition:color .2s;padding:3px;}
+.pbtn:hover{color:var(--gold);}
+.pplay{width:30px;height:30px;background:var(--gold);border-radius:50%;color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:.78rem;}
+.pplay:hover{background:var(--gl);}
+.prog{background:rgba(255,255,255,.08);height:3px;border-radius:2px;overflow:hidden;margin-bottom:6px;cursor:pointer;}
+.pf{background:linear-gradient(90deg,var(--rose),var(--gold));height:100%;border-radius:2px;width:0%;transition:width .3s linear;}
+.vrow{display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+.vi{font-size:.7rem;color:rgba(245,234,212,.4);}
+.vs{flex:1;height:3px;appearance:none;background:rgba(255,255,255,.1);border-radius:2px;cursor:pointer;}
+.vs::-webkit-slider-thumb{appearance:none;width:10px;height:10px;border-radius:50%;background:var(--gold);cursor:pointer;}
+.plist{max-height:120px;overflow-y:auto;border-top:1px solid rgba(201,168,76,.08);padding-top:7px;}
 .plist::-webkit-scrollbar{width:2px;}
-.plist::-webkit-scrollbar-thumb{background:rgba(201,168,76,.28);}
-.plitem{display:flex;align-items:center;gap:7px;padding:6px 4px;border-radius:4px;cursor:pointer;transition:background .2s;font-size:.68rem;color:rgba(245,234,212,.55);}
-.plitem:hover{background:rgba(201,168,76,.09);color:var(–parchment);}
-.plitem.on{color:var(–gold);}
-.pldot{width:5px;height:5px;border-radius:50%;background:rgba(201,168,76,.28);flex-shrink:0;}
-.plitem.on .pldot{background:var(–gold);animation:pulse 1s infinite;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.28}}
-.pynote{font-size:.55rem;color:rgba(245,234,212,.3);text-align:center;margin-top:6px;font-style:italic;line-height:1.4;}
+.plist::-webkit-scrollbar-thumb{background:rgba(201,168,76,.24);}
+.pli{display:flex;align-items:center;gap:7px;padding:5px 3px;border-radius:3px;cursor:pointer;transition:background .2s;font-size:.64rem;color:rgba(245,234,212,.52);}
+.pli:hover{background:rgba(201,168,76,.07);color:var(--pg);}
+.pli.on{color:var(--gold);}
+.pdot{width:4px;height:4px;border-radius:50%;background:rgba(201,168,76,.24);flex-shrink:0;}
+.pli.on .pdot{background:var(--gold);animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.24}}
+.pyn{font-size:.5rem;color:rgba(245,234,212,.26);text-align:center;margin-top:5px;font-style:italic;line-height:1.4;}
 
-/* ── MODAL ── */
-.mbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:300;align-items:center;justify-content:center;backdrop-filter:blur(10px);}
-.mbg.open{display:flex;}
-.modal{background:linear-gradient(135deg,#1a0a00,#0d0f1a);border:1px solid rgba(201,168,76,.28);border-radius:6px;max-width:560px;width:92%;max-height:88vh;overflow-y:auto;padding:32px;position:relative;animation:slideUp .36s ease;}
-@keyframes slideUp{from{transform:translateY(36px);opacity:0}to{transform:translateY(0);opacity:1}}
-.mclose{position:absolute;top:12px;right:12px;background:none;border:none;color:var(–gold);font-size:1.1rem;cursor:pointer;}
-.mimg{width:100%;height:160px;background-size:cover;background-position:center;border-radius:4px;position:relative;margin-bottom:18px;overflow:hidden;}
-.mimg-ov{position:absolute;inset:0;background:rgba(13,6,4,.5);}
-.mimg-txt{position:absolute;bottom:12px;left:14px;}
-.m-region{font-family:‘Cinzel’,serif;font-size:.54rem;letter-spacing:.2em;color:var(–gold);text-transform:uppercase;margin-bottom:2px;}
-.m-name{font-family:‘Playfair Display’,serif;font-size:1.7rem;font-style:italic;color:var(–gold-l);}
-.m-native{font-family:‘Noto Nastaliq Urdu’,serif;direction:rtl;font-size:.96rem;color:var(–gold);margin-top:2px;}
-.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-.mkey{font-family:‘Cinzel’,serif;font-size:.54rem;letter-spacing:.18em;color:var(–gold);text-transform:uppercase;margin-bottom:2px;}
-.mval{font-size:.84rem;color:rgba(245,234,212,.78);}
-.mbio{font-size:.88rem;line-height:1.94;color:rgba(245,234,212,.72);margin-bottom:16px;}
-.mvlabel{font-family:‘Cinzel’,serif;font-size:.58rem;letter-spacing:.2em;color:var(–gold);text-transform:uppercase;margin-bottom:9px;}
-.msher{background:rgba(255,255,255,.04);border-left:3px solid var(–gold);padding:14px;border-radius:0 4px 4px 0;margin-bottom:8px;}
-.msher-rtl{font-family:‘Noto Nastaliq Urdu’,serif;direction:rtl;text-align:right;font-size:.98rem;line-height:2;color:#fff;}
-.msher-ltr{font-family:‘Playfair Display’,serif;direction:ltr;text-align:left;font-size:.94rem;line-height:1.8;color:#fff;}
-.msher-t{font-style:italic;font-size:.76rem;color:rgba(245,234,212,.56);margin-top:5px;line-height:1.65;}
-
-/* ── TOAST ── */
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(201,168,76,.97);color:var(–ink);font-family:‘Cinzel’,serif;font-size:.68rem;letter-spacing:.1em;padding:10px 20px;border-radius:4px;z-index:500;opacity:0;transition:opacity .28s;pointer-events:none;white-space:nowrap;max-width:90vw;text-align:center;}
+/* TOAST */
+.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%);background:rgba(201,168,76,.97);color:var(--ink);font-family:'Cinzel',serif;font-size:.64rem;letter-spacing:.1em;padding:9px 17px;border-radius:4px;z-index:500;opacity:0;transition:opacity .24s;pointer-events:none;white-space:nowrap;max-width:90vw;text-align:center;}
 .toast.show{opacity:1;}
 
-::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(–deep);}::-webkit-scrollbar-thumb{background:rgba(201,168,76,.28);border-radius:3px;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--deep);}::-webkit-scrollbar-thumb{background:rgba(201,168,76,.24);border-radius:3px;}
 
-@media(max-width:600px){
-.player{width:calc(100vw - 30px);right:15px;left:15px;}
-.modal{padding:18px;}.mgrid{grid-template-columns:1fr;}
-.nav-tab{font-size:.56rem;padding:12px 8px;}
-.pgrid{grid-template-columns:1fr 1fr;}
+@media(max-width:768px){
+  .pp-body{grid-template-columns:1fr;}
+  .pp-right{order:-1;}
+  .pp-hero-content{gap:16px;}
+  .pp-portrait{width:110px;height:140px;}
 }
-@media(max-width:400px){.pgrid{grid-template-columns:1fr;}}
+@media(max-width:600px){
+  .player{width:calc(100vw - 26px);right:13px;left:13px;}
+  .ntab{font-size:.53rem;padding:11px 8px;}
+  .pgrid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:380px){.pgrid{grid-template-columns:1fr;}}
 </style>
-
 </head>
 <body>
-<div id="ambient"></div>
-<div id="petals"></div>
+<div id="amb"></div><div id="petals"></div>
 <div class="toast" id="toast"></div>
 
-<!-- HEADER -->
-
 <header>
-  <span class="logo-urdu">شاعری دنیا</span>
-  <div class="logo-en">Shayari Duniya — The World of Poetry</div>
-  <p class="tagline">Where every verse finds its eternal soul</p>
+  <span class="logo-u">شاعری دنیا</span>
+  <div class="logo-h">शायरी दुनिया</div>
+  <div class="logo-e">Shayari Duniya — The World of Poetry</div>
+  <p class="tagline">Urdu · हिंदी · English — Three scripts, one eternal soul</p>
 </header>
 
-<!-- NAV -->
-
 <nav>
-  <div class="nav-tabs">
-    <button class="nav-tab active" data-tab="explore" onclick="switchTab('explore')">🌙 Explore</button>
-    <button class="nav-tab" data-tab="map" onclick="switchTab('map')">🗺 Regions</button>
-    <button class="nav-tab" data-tab="feed" onclick="switchTab('feed')">📜 Feed</button>
-    <button class="nav-tab" data-tab="create" onclick="switchTab('create')">✍️ Create</button>
+  <div class="ntabs">
+    <button class="ntab on" data-tab="explore" onclick="gTab('explore')">🌙 Explore</button>
+    <button class="ntab" data-tab="map" onclick="gTab('map')">🗺 Regions</button>
+    <button class="ntab" data-tab="feed" onclick="gTab('feed')">📜 Feed</button>
+    <button class="ntab" data-tab="create" onclick="gTab('create')">✍️ Create</button>
   </div>
-  <div class="nav-right">
-    <button class="btn-ghost" onclick="switchTab('create')">+ Post</button>
-  </div>
+  <div class="nright"><button class="btn-o" onclick="gTab('create')">+ Post</button></div>
 </nav>
 
 <main>
 
 <!-- EXPLORE -->
-
-<div class="section active" id="tab-explore">
-  <div class="ex-hero">
-    <h1 class="ex-title">The Great Poets of the World</h1>
-    <p style="color:rgba(245,234,212,.42);font-style:italic;margin-top:7px;font-size:.88rem;">From Ghalib to Kafka — voices that shaped humanity</p>
+<div class="page on" id="page-explore">
+  <div class="sbar">
+    <span class="slbl">Verses in:</span>
+    <button class="sb on" id="sb-all" onclick="setSc('all')">All Scripts</button>
+    <button class="sb" id="sb-urdu" onclick="setSc('urdu')">اردو Urdu</button>
+    <button class="sb" id="sb-hindi" onclick="setSc('hindi')">हिंदी Hindi</button>
+    <button class="sb" id="sb-eng" onclick="setSc('eng')">English</button>
   </div>
-  <div class="search-row">
-    <div class="s-box">
-      <span class="s-icon">🔍</span>
-      <input class="s-inp" id="ex-search" placeholder="Search poets by name, region, style, language..." oninput="onExSearch()">
-      <button class="s-clr" onclick="clrExSearch()">✕</button>
-    </div>
+  <div class="exhero">
+    <h1 class="exhero-t">The Great Poets of the World</h1>
+    <div class="exhero-h">दुनिया के महान शायर, कवि और ऋषि</div>
+    <p style="color:rgba(245,234,212,.35);font-style:italic;margin-top:4px;font-size:.84rem;">Click any poet to open their full profile</p>
   </div>
-  <div class="fbar" id="ex-filters">
-    <button class="chip on" data-f="all" onclick="fEx('all',this)">All Poets</button>
+  <div class="srow"><div class="sbox">
+    <span class="si">🔍</span>
+    <input class="sinp" id="exs" placeholder="Search poets, regions, styles..." oninput="onExS()">
+    <button class="sclr" onclick="clrExS()">✕</button>
+  </div></div>
+  <div class="fbar" id="ex-f">
+    <button class="chip on" data-f="all" onclick="fEx('all',this)">All</button>
     <button class="chip" data-f="classical" onclick="fEx('classical',this)">Classical</button>
     <button class="chip" data-f="modern" onclick="fEx('modern',this)">Modern</button>
     <button class="chip" data-f="contemporary" onclick="fEx('contemporary',this)">Contemporary</button>
     <button class="chip rose" data-f="ghazal" onclick="fEx('ghazal',this)">Ghazal</button>
-    <button class="chip rose" data-f="nazm" onclick="fEx('nazm',this)">Nazm / Poem</button>
-    <button class="chip rose" data-f="rubai" onclick="fEx('rubai',this)">Rubai</button>
-    <button class="chip rose" data-f="prose" onclick="fEx('prose',this)">Prose Poetry</button>
+    <button class="chip rose" data-f="nazm" onclick="fEx('nazm',this)">Nazm</button>
+    <button class="chip rose" data-f="rubai" onclick="fEx('rubai',this)">Rubai / Doha</button>
+    <button class="chip saffron" data-f="sacred" onclick="fEx('sacred',this)">📿 Sacred Texts</button>
     <button class="chip teal" data-f="south-asia" onclick="fEx('south-asia',this)">South Asia</button>
     <button class="chip teal" data-f="persia" onclick="fEx('persia',this)">Persia</button>
     <button class="chip teal" data-f="central-asia" onclick="fEx('central-asia',this)">Central Asia</button>
-    <button class="chip teal" data-f="middle-east" onclick="fEx('middle-east',this)">Middle East</button>
     <button class="chip blue" data-f="europe" onclick="fEx('europe',this)">Europe</button>
     <button class="chip blue" data-f="americas" onclick="fEx('americas',this)">Americas</button>
   </div>
   <div class="pgrid" id="pgrid"></div>
 </div>
 
-<!-- MAP -->
+<!-- POET FULL PAGE -->
+<div class="page" id="page-poet">
+  <div class="pp-back">
+    <button class="pp-back-btn" onclick="backToExplore()">← Back</button>
+    <span class="pp-breadcrumb">Explore → <span id="pp-breadname"></span></span>
+  </div>
+  <div id="pp-content"></div>
+</div>
 
-<div class="section" id="tab-map">
-  <div class="map-wrap">
-    <p class="map-ttl">✦ Poetry Across the World — by Region ✦</p>
+<!-- MAP -->
+<div class="page" id="page-map">
+  <div class="mwrap">
+    <p class="mttl">✦ Poetry Across the World ✦</p>
     <div class="rgrid" id="rgrid"></div>
   </div>
 </div>
 
 <!-- FEED -->
-
-<div class="section" id="tab-feed">
-  <div class="search-row">
-    <div class="s-box">
-      <span class="s-icon">🔍</span>
-      <input class="s-inp" id="fd-search" placeholder="Search verses, authors, themes..." oninput="onFdSearch()">
-      <button class="s-clr" onclick="clrFdSearch()">✕</button>
-    </div>
+<div class="page" id="page-feed">
+  <div class="sbar">
+    <span class="slbl">Display:</span>
+    <button class="sb on" id="fsb-all" onclick="setFSc('all')">All Scripts</button>
+    <button class="sb" id="fsb-urdu" onclick="setFSc('urdu')">اردو</button>
+    <button class="sb" id="fsb-hindi" onclick="setFSc('hindi')">हिंदी</button>
+    <button class="sb" id="fsb-eng" onclick="setFSc('eng')">English</button>
   </div>
-  <div class="fbar" id="fd-filters">
-    <button class="chip on" data-f="all" onclick="fFd('all',this)">All Verses</button>
+  <div class="srow"><div class="sbox">
+    <span class="si">🔍</span>
+    <input class="sinp" id="fds" placeholder="Search verses, authors..." oninput="onFdS()">
+    <button class="sclr" onclick="clrFdS()">✕</button>
+  </div></div>
+  <div class="fbar" id="fd-f">
+    <button class="chip on" data-f="all" onclick="fFd('all',this)">All</button>
     <button class="chip" data-f="ishq" onclick="fFd('ishq',this)">عشق Ishq</button>
     <button class="chip" data-f="dard" onclick="fFd('dard',this)">درد Dard</button>
     <button class="chip" data-f="zindagi" onclick="fFd('zindagi',this)">زندگی Zindagi</button>
     <button class="chip" data-f="watan" onclick="fFd('watan',this)">وطن Watan</button>
-    <button class="chip" data-f="existential" onclick="fFd('existential',this)">Existential</button>
+    <button class="chip" data-f="existential" onclick="fFd('existential',this)">Philosophy</button>
     <button class="chip" data-f="nature" onclick="fFd('nature',this)">Nature</button>
+    <button class="chip saffron" data-f="sacred" onclick="fFd('sacred',this)">📿 Sacred</button>
     <button class="chip rose" data-f="user" onclick="fFd('user',this)">👤 Community</button>
   </div>
-  <div class="feed-wrap" id="feed"></div>
+  <div class="fwrap" id="feed"></div>
 </div>
 
 <!-- CREATE -->
-
-<div class="section" id="tab-create">
-  <div class="create-wrap">
-    <h2 class="c-title">Share Your Verse</h2>
-    <p class="c-sub">Pour your heart into words — let the world feel it.</p>
-
-```
-<!-- Author -->
-<div class="fg">
-  <div class="flabel"><span class="flabel-text">Your Name / Pen Name</span></div>
-  <input class="finput" id="c-author" placeholder="e.g. Zara 'Dard' or Anonymous">
-</div>
-
-<!-- Verse with RTL/LTR toggle -->
-<div class="fg">
-  <div class="flabel">
-    <span class="flabel-text">Your Verse</span>
-    <div class="dir-toggle">
-      <span class="dir-hint">SCRIPT:</span>
-      <button class="dir-btn active" id="btn-rtl" onclick="setDir('rtl')">← RTL (Urdu)</button>
-      <button class="dir-btn" id="btn-ltr" onclick="setDir('ltr')">LTR (English) →</button>
+<div class="page" id="page-create">
+  <div class="cwrap">
+    <h2 class="ct">Share Your Verse</h2>
+    <p class="cs">اپنی بات کہیں · अपनी बात कहें · Pour your heart in any language</p>
+    <div class="fg">
+      <div class="fl"><span class="flt">Your Name / Pen Name</span></div>
+      <input class="fi" id="c-auth" placeholder="e.g. Zara 'Dard', Anonymous, अज्ञात">
     </div>
-  </div>
-  <div class="ftawrap">
-    <textarea class="fta rtl" id="c-verse" placeholder="یہاں لکھیں..." oninput="updatePreview()"></textarea>
-    <button class="clr-btn" onclick="clrField('c-verse')">✕ Clear</button>
-  </div>
-  <div class="fhint">RTL = Urdu / Arabic / Hindi &nbsp;·&nbsp; LTR = English / French / Spanish etc.</div>
-</div>
-
-<!-- Translation -->
-<div class="fg">
-  <div class="flabel"><span class="flabel-text">Translation / Context (Optional)</span></div>
-  <div class="ftawrap">
-    <textarea class="fta ltr" id="c-trans" placeholder="Meaning or translation in English..." style="min-height:72px;"></textarea>
-    <button class="clr-btn" onclick="clrField('c-trans')">✕ Clear</button>
-  </div>
-</div>
-
-<!-- Category -->
-<div class="fg">
-  <div class="flabel"><span class="flabel-text">Theme / Category</span></div>
-  <select class="fselect" id="c-cat">
-    <option value="ishq">عشق — Ishq (Love)</option>
-    <option value="dard">درد — Dard (Pain)</option>
-    <option value="zindagi">زندگی — Zindagi (Life)</option>
-    <option value="watan">وطن — Watan (Homeland)</option>
-    <option value="existential">Existential / Philosophy</option>
-    <option value="nature">Nature / Beauty</option>
-  </select>
-</div>
-
-<!-- Background picker -->
-<div class="fg">
-  <div class="flabel"><span class="flabel-text">Background Aesthetic</span></div>
-  <div class="bg-grid" id="bg-picker"></div>
-</div>
-
-<!-- Upload BG -->
-<div class="fg">
-  <div class="flabel"><span class="flabel-text">Upload Your Own Background</span></div>
-  <input type="file" id="c-bgfile" accept="image/*" style="display:none" onchange="handleBgUpload(event)">
-  <button class="btn-ghost" onclick="document.getElementById('c-bgfile').click()">📷 Upload Image</button>
-</div>
-
-<!-- Overlay -->
-<div class="fg">
-  <div class="flabel"><span class="flabel-text">Overlay Style</span></div>
-  <select class="fselect" id="c-overlay" onchange="updatePreview()">
-    <option value="dark">Dark Fade (Classic)</option>
-    <option value="rose">Rose Mist</option>
-    <option value="teal">Teal Dusk</option>
-    <option value="gold">Golden Hour</option>
-    <option value="midnight">Midnight Blue</option>
-    <option value="forest">Forest Green</option>
-  </select>
-</div>
-
-<!-- Preview -->
-<div class="fg">
-  <div class="flabel"><span class="flabel-text">Live Preview</span></div>
-  <div class="preview-wrap">
-    <div class="preview-bg" id="preview-bg">
-      <div class="preview-ov" id="preview-ov"></div>
-      <div class="preview-in">
-        <div class="preview-text rtl" id="preview-text">آپ کی شاعری یہاں نظر آئے گی</div>
+    <div class="fg">
+      <div class="fl">
+        <span class="flt">Your Verse</span>
+        <div class="dtog">
+          <button class="db on" id="d-rtl" onclick="setDir('rtl')">← اردو</button>
+          <button class="db" id="d-deva" onclick="setDir('deva')">हिंदी</button>
+          <button class="db" id="d-ltr" onclick="setDir('ltr')">English →</button>
+        </div>
+      </div>
+      <div class="taw">
+        <textarea class="ta rtl" id="c-verse" placeholder="یہاں اپنی شاعری لکھیں..." oninput="updPv()"></textarea>
+        <button class="clrb" onclick="clrF('c-verse')">✕</button>
+      </div>
+      <div class="fhint">RTL = Urdu/Arabic · Devanagari = Hindi/Sanskrit · LTR = English & other scripts</div>
+    </div>
+    <div class="fg">
+      <div class="fl"><span class="flt">Meaning / Translation</span></div>
+      <div class="taw">
+        <textarea class="ta ltr" id="c-trans" placeholder="Meaning in English..." style="min-height:64px;"></textarea>
+        <button class="clrb" onclick="clrF('c-trans')">✕</button>
       </div>
     </div>
-  </div>
-</div>
-
-<button class="btn-gold" style="width:100%;padding:13px;font-size:.78rem;margin-top:6px;border-radius:3px;" onclick="submitPost()">✦ Publish Verse ✦</button>
-```
-
+    <div class="fg">
+      <div class="fl"><span class="flt">Theme</span></div>
+      <select class="fse" id="c-cat">
+        <option value="ishq">عشق / प्रेम — Love</option>
+        <option value="dard">درد / दर्द — Pain</option>
+        <option value="zindagi">زندگی — Life</option>
+        <option value="watan">وطن / वतन — Homeland</option>
+        <option value="existential">Philosophy / Existential</option>
+        <option value="nature">Nature / Beauty</option>
+        <option value="sacred">Sacred / Spiritual</option>
+      </select>
+    </div>
+    <div class="fg">
+      <div class="fl"><span class="flt">Background</span></div>
+      <div class="bggrid" id="bgp"></div>
+    </div>
+    <div class="fg">
+      <div class="fl"><span class="flt">Upload Custom Background</span></div>
+      <input type="file" id="bgf" accept="image/*" style="display:none" onchange="onBgUp(event)">
+      <button class="btn-o" onclick="document.getElementById('bgf').click()">📷 Upload</button>
+    </div>
+    <div class="fg">
+      <div class="fl"><span class="flt">Overlay Style</span></div>
+      <select class="fse" id="c-ov" onchange="updPv()">
+        <option value="dark">Dark Fade (Classic)</option>
+        <option value="rose">Rose Mist</option>
+        <option value="teal">Teal Dusk</option>
+        <option value="gold">Golden Hour</option>
+        <option value="midnight">Midnight Blue</option>
+        <option value="saffron">Saffron Temple</option>
+        <option value="forest">Forest Green</option>
+      </select>
+    </div>
+    <div class="fg">
+      <div class="fl"><span class="flt">Live Preview</span></div>
+      <div class="pvw"><div class="pvbg" id="pv-bg"><div class="pvov" id="pv-ov"></div>
+        <div class="pvin"><div class="pvt rtl" id="pv-t">آپ کی شاعری یہاں نظر آئے گی</div></div>
+      </div></div>
+    </div>
+    <button class="btn-g" style="width:100%;padding:12px;font-size:.74rem;margin-top:4px;border-radius:3px;" onclick="submit()">✦ Publish Verse ✦</button>
   </div>
 </div>
 
 </main>
 
-<!-- MODAL -->
-
-<div class="mbg" id="modal-bg" onclick="handleMbgClick(event)">
-  <div class="modal" id="modal-inner"></div>
-</div>
-
 <!-- MUSIC PLAYER -->
-
 <div class="player" id="player">
-  <div class="pheader">
-    <span class="ptitle">🎵 Poetry Music</span>
-    <button class="ptoggle" id="ptoggle" onclick="toggleMini()">—</button>
+  <div class="phdr">
+    <span class="pttl">🎵 Poetry Music</span>
+    <button class="ptog" id="ptog" onclick="togMini()">—</button>
   </div>
-  <div class="pbody">
-    <div class="pnow" id="pnow">Select a track below...</div>
-    <div class="pstatus" id="pstatus"></div>
-    <div class="pctrls">
-      <button class="pbtn" onclick="prevTrack()">⏮</button>
-      <button class="pbtn pplay" id="playbtn" onclick="togglePlay()">▶</button>
-      <button class="pbtn" onclick="nextTrack()">⏭</button>
+  <div class="pbod">
+    <div class="pnow" id="pnow">Select a track...</div>
+    <div class="pst" id="pst"></div>
+    <div class="pctl">
+      <button class="pbtn" onclick="prevT()">⏮</button>
+      <button class="pbtn pplay" id="playbtn" onclick="togPlay()">▶</button>
+      <button class="pbtn" onclick="nextT()">⏭</button>
       <div style="flex:1"></div>
-      <button class="pbtn" id="shufflebtn" onclick="toggleShuffle()" title="Shuffle">🔀</button>
+      <button class="pbtn" id="shufbtn" onclick="togShuf()">🔀</button>
     </div>
-    <div class="progbar" onclick="seekProg(event)"><div class="progfill" id="progfill"></div></div>
-    <div class="volrow">
-      <span class="volicon">🔈</span>
-      <input type="range" class="volslider" id="vol" min="0" max="1" step="0.01" value="0.7">
-      <span class="volicon">🔊</span>
+    <div class="prog" onclick="seekP(event)"><div class="pf" id="pf"></div></div>
+    <div class="vrow">
+      <span class="vi">🔈</span>
+      <input type="range" class="vs" min="0" max="1" step="0.01" value="0.7">
+      <span class="vi">🔊</span>
     </div>
     <div class="plist" id="plist"></div>
-    <div class="pynote">▶ Opens YouTube popup for audio. Allow popups in your browser.</div>
+    <div class="pyn">▶ Opens YouTube popup · Allow popups for audio</div>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════
-//  POETS DATA
-// ═══════════════════════════════════════
-const POETS = [
-  {id:1,name:'Mirza Ghalib',native:'مرزا غالب',region:'South Asia',rk:'south-asia',era:'Classical (1797–1869)',eras:['classical'],styles:['ghazal','nazm'],tags:['Urdu','Persian','Delhi'],born:'1797',died:'1869',lang:'Urdu & Persian',img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80',
-   bio:'The titan of Urdu ghazal. Born in Agra, he lived in Delhi under Mughal patronage and witnessed the empire\'s fall. His verses carry philosophical depth, wit, and timeless yearning.',
-   shers:[{u:'ہزاروں خواہشیں ایسی کہ ہر خواہش پہ دم نکلے',t:'A thousand desires, each demanding a lifetime'},
-          {u:'دل ڈھونڈتا ہے پھر وہی فرصت کے رات دن',t:'The heart seeks again those leisured nights and days'},
-          {u:'ہم کو معلوم ہے جنت کی حقیقت لیکن',t:'We know the truth of paradise — yet the heart is cheered by this delusion'}]},
-  {id:2,name:'Allama Iqbal',native:'علامہ اقبال',region:'South Asia',rk:'south-asia',era:'Modern (1877–1938)',eras:['modern'],styles:['nazm','ghazal'],tags:['Urdu','Persian','Philosophy'],born:'1877',died:'1938',lang:'Urdu & Persian',img:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80',
-   bio:'Philosopher-poet of the East. Iqbal ignited the spirit of self-discovery in Muslim thought with visionary epics spanning both Urdu and Persian.',
-   shers:[{u:'خودی کو کر بلند اتنا کہ ہر تقدیر سے پہلے',t:'Raise yourself so high that God asks you before writing your destiny'},
-          {u:'ستاروں سے آگے جہاں اور بھی ہیں',t:'Beyond the stars, there are worlds yet to be discovered'},
-          {u:'تو شاہیں ہے پرواز ہے کام تیرا',t:'You are a falcon — flight is your destiny'}]},
-  {id:3,name:'Faiz Ahmed Faiz',native:'فیض احمد فیض',region:'South Asia',rk:'south-asia',era:'Modern (1911–1984)',eras:['modern'],styles:['ghazal','nazm'],tags:['Urdu','Progressive','Lahore'],born:'1911',died:'1984',lang:'Urdu',img:'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=80',
-   bio:'A revolutionary romantic. Faiz wove love, protest, and longing into luminous verse. Imprisoned for his politics, his poetry became a global symbol of resistance and beauty.',
-   shers:[{u:'مجھ سے پہلی سی محبت مری محبوب نہ مانگ',t:'Ask not of me, my beloved, that love of earlier days'},
-          {u:'آج بازار میں پا بجولاں چلو',t:'Come, let us walk the market today in chains — come'},
-          {u:'گلوں میں رنگ بھرے باد نوبہار چلے',t:'The wind of new spring fills the flowers with colour'}]},
-  {id:4,name:'Mir Taqi Mir',native:'میر تقی میر',region:'South Asia',rk:'south-asia',era:'Classical (1723–1810)',eras:['classical'],styles:['ghazal'],tags:['Urdu','Delhi','Lucknow'],born:'1723',died:'1810',lang:'Urdu',img:'https://images.unsplash.com/photo-1542401886-65d6c61db217?w=600&q=80',
-   bio:'Called "Khuda-e Sukhan" — God of Poetry. Mir\'s ghazals hold supreme simplicity and grief. He witnessed the Mughal Empire\'s fall, and every line carries that civilisational weight.',
-   shers:[{u:'اُلٹی ہو گئیں سب تدبیریں کچھ نہ دوا نے کام کیا',t:'All remedies went awry, medicine did nothing'},
-          {u:'میر کے دیر و حرم سے جی بھر گیا',t:'Mir grew weary of temple and mosque'},
-          {u:'پتا پتا بوٹا بوٹا حال ہمارا جانے ہے',t:'Every leaf and every bud knows my condition'}]},
-  {id:5,name:'Ahmad Faraz',native:'احمد فراز',region:'South Asia',rk:'south-asia',era:'Contemporary (1931–2008)',eras:['contemporary'],styles:['ghazal','nazm'],tags:['Urdu','Peshawar','Resistance'],born:'1931',died:'2008',lang:'Urdu',img:'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&q=80',
-   bio:'Voice of the brokenhearted generation. Faraz blended romantic longing with political resistance. His ghazals fill concert halls and are whispered in private rooms across the world.',
-   shers:[{u:'رنجش ہی سہی دل ہی دکھانے کے لیے آ',t:'Even if in anger — come, just to wound this heart, come'},
-          {u:'ابھی کچھ اور ستائے گا زمانہ مجھ کو',t:'Time will torment me a little more yet'},
-          {u:'سنا ہے لوگ اسے آنکھ بھر کے دیکھتے ہیں',t:'I hear that people behold her with eyes full to the brim'}]},
-  {id:6,name:'Parveen Shakir',native:'پروین شاکر',region:'South Asia',rk:'south-asia',era:'Contemporary (1952–1994)',eras:['contemporary'],styles:['ghazal','nazm'],tags:['Urdu','Karachi','Feminine Voice'],born:'1952',died:'1994',lang:'Urdu',img:'https://images.unsplash.com/photo-1518050947974-4be8c7469f0c?w=600&q=80',
-   bio:'Parveen Shakir gave Urdu poetry a new feminine voice — tender, fierce, and utterly modern. Her debut Khushbu became legendary. She died at 42, leaving an eternal fragrance.',
-   shers:[{u:'خوشبو کی طرح پھیل گئی ہوں میں',t:'Like fragrance I have spread — and I have no form now'},
-          {u:'وہ تو خوشبو ہے ہواؤں میں بکھر جائے گا',t:'He is fragrance — he will scatter into the winds'},
-          {u:'کتنی تنہا ہوں میں اس گھر میں',t:'How alone I am in this house'}]},
-  {id:7,name:'Kabir Das',native:'کبیر داس',region:'South Asia',rk:'south-asia',era:'Classical (1440–1518)',eras:['classical'],styles:['nazm'],tags:['Hindi','Bhakti','Varanasi'],born:'c.1440',died:'c.1518',lang:'Hindi & Bhojpuri',img:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80',
-   bio:'Mystic weaver-poet Kabir pierced through religious divisions with razor-sharp dohas. Claimed by both Hindus and Muslims, his verses remain the most sung poetry on the subcontinent.',
-   shers:[{u:'माटी कहे कुम्हार से तू क्या रोंदे मोय',t:'The clay says to the potter: why do you knead me? One day your feet will be kneaded into clay.'},
-          {u:'दुख में सुमिरन सब करें सुख में करे न कोय',t:'In sorrow all remember God — in joy, none do'},
-          {u:'बुरा जो देखन मैं चला बुरा न मिलिया कोय',t:'I went looking for evil and found none — when I looked within, I found none but me'}]},
-  {id:8,name:'Bulleh Shah',native:'بلھے شاہ',region:'South Asia',rk:'south-asia',era:'Classical (1680–1757)',eras:['classical'],styles:['nazm'],tags:['Punjabi','Sufi','Kasur'],born:'c.1680',died:'1757',lang:'Punjabi',img:'https://images.unsplash.com/photo-1494548162494-384bba4ab999?w=600&q=80',
-   bio:'Punjab\'s greatest Sufi poet. Bulleh Shah\'s kafis dissolve ego, caste, and creed in divine love. Sung by qawwals, folk singers, and modern musicians across centuries.',
-   shers:[{u:'بلھا کی جاناں میں کون',t:'Bulleh, what do I know who I am?'},
-          {u:'رانجھا رانجھا کردی نی میں آپے رانجھا ہوئی',t:'Calling Ranjha, Ranjha — I myself became Ranjha'},
-          {u:'الف اللہ چمبے دی بوٹی',t:'The letter Alif — God — is a jasmine plant planted by the Murshid in my heart'}]},
-  {id:9,name:'Rabindranath Tagore',native:'রবীন্দ্রনাথ ঠাকুর',region:'South Asia',rk:'south-asia',era:'Modern (1861–1941)',eras:['modern'],styles:['nazm','prose'],tags:['Bengali','Nobel','Kolkata'],born:'1861',died:'1941',lang:'Bengali & English',img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80',
-   bio:'First non-European Nobel Laureate in Literature. Tagore\'s Gitanjali is a spiritual hymn to beauty and devotion. He wrote the national anthems of both India and Bangladesh.',
-   shers:[{u:'Where the mind is without fear and the head is held high.',t:'Gitanjali, Verse 35 — a prayer for a free nation',ltr:true},
-          {u:'যদি তোর ডাক শুনে কেউ না আসে তবে একলা চলো রে',t:'If no one answers your call, walk alone.'},
-          {u:'Death is not extinguishing the light — it is putting out the lamp because the dawn has come.',t:'Tagore',ltr:true}]},
-  {id:10,name:'Hafez Shirazi',native:'حافظ شیرازی',region:'Persia',rk:'persia',era:'Classical (1325–1390)',eras:['classical'],styles:['ghazal','rubai'],tags:['Persian','Sufi','Shiraz'],born:'c.1325',died:'c.1390',lang:'Persian',img:'https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=600&q=80',
-   bio:'The Tongue of the Hidden. Hafez is the supreme master of Persian ghazal. His Divan is kept in nearly every Iranian home for divination. His verses blend mysticism with earthly joy.',
-   shers:[{u:'الا یا ایها الساقی ادر کاساً و ناولها',t:'O cup-bearer, pass the wine — love seemed easy at first, but hardships have come'},
-          {u:'شب تاریک و بیم موج و گردابی چنین هائل',t:'Dark night, fear of waves, whirlpools so terrifying — what do the shore-dwellers know of our state?'},
-          {u:'هر که این آتش ندارد نیست باد',t:'Let whoever lacks this fire be naught'}]},
-  {id:11,name:'Omar Khayyam',native:'عمر خیام',region:'Persia',rk:'persia',era:'Classical (1048–1131)',eras:['classical'],styles:['rubai'],tags:['Persian','Philosophy','Nishapur'],born:'1048',died:'1131',lang:'Persian',img:'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=600&q=80',
-   bio:'Mathematician, astronomer, and poet. Khayyam\'s Rubaiyat are among literature\'s greatest treasures, celebrating wine, love, and existence\'s mystery with tender skeptical wisdom.',
-   shers:[{u:'یک قطره آب بود افتاد به دریا',t:'A drop of water fell into the sea — it was once a drop, now it is the sea'},
-          {u:'این کوزه چون من عاشق زاری بوده است',t:'This jug, like me, was once a lovesick mourner'},
-          {u:'می خور که عقل را ز می آید به کار',t:'Drink wine — for the mind benefits from wine'}]},
-  {id:12,name:'Rumi',native:'رومی',region:'Central Asia',rk:'central-asia',era:'Classical (1207–1273)',eras:['classical'],styles:['ghazal','nazm'],tags:['Persian','Sufi','Konya'],born:'1207',died:'1273',lang:'Persian',img:'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=80',
-   bio:'Jalal ad-Din Rumi is the world\'s most-read poet. His Masnavi — a six-volume spiritual epic — and Divan-e Shams are oceans of love and mystic truth. He founded the Whirling Dervishes.',
-   shers:[{u:'بشنو این نی چون شکایت می‌کند',t:'Listen to the reed flute — how it tells of separation'},
-          {u:'آتش عشق است کاندر نی فتاد',t:'It is the fire of love that has fallen into the reed'},
-          {u:'من کجا بودم عجب کو بود من',t:'Where was I? Strange — where was I?'}]},
-  {id:13,name:'Al-Mutanabbi',native:'المتنبی',region:'Middle East',rk:'middle-east',era:'Classical (915–965)',eras:['classical'],styles:['ghazal'],tags:['Arabic','Abbasid','Iraq'],born:'915',died:'965',lang:'Arabic',img:'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80',
-   bio:'Considered the greatest Arabic poet. Al-Mutanabbi\'s poetry is a monument of pride, intelligence, and ambition. His verses are still memorised across the entire Arab world.',
-   shers:[{u:'على قدر أهل العزم تأتي العزائم',t:'Great ambitions come to the measure of great souls'},
-          {u:'أنا الذي نظر الأعمى إلى أدبي',t:'I am the one whose words even the blind can see'},
-          {u:'الخيل والليل والبيداء تعرفني',t:'The horses, the night, and the desert know me'}]},
-  {id:14,name:'Franz Kafka',native:'فرانز کافکا',region:'Europe',rk:'europe',era:'Modern (1883–1924)',eras:['modern'],styles:['prose'],tags:['Czech','German','Absurdist','Prague'],born:'1883',died:'1924',lang:'German',img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80',
-   bio:'Kafka wrote in German from Prague, creating allegories of alienation, bureaucracy, and existential dread that defined modern literature. He burned most of his work — his friend Max Brod saved it for the world.',
-   shers:[{u:'There is infinite hope — but not for us.',t:'Conversation recorded by Max Brod',ltr:true},
-          {u:'A book must be the axe for the frozen sea within us.',t:'Letter to Oskar Pollak, 1904',ltr:true},
-          {u:'In the struggle between yourself and the world, back the world.',t:'Zurau Aphorism',ltr:true}]},
-  {id:15,name:'Rainer Maria Rilke',native:'رائنر ماریا ریلکے',region:'Europe',rk:'europe',era:'Modern (1875–1926)',eras:['modern'],styles:['nazm','prose'],tags:['German','Austrian','Prague','Mystical'],born:'1875',died:'1926',lang:'German',img:'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=80',
-   bio:'Perhaps the greatest lyric poet of 20th-century German literature. Rilke\'s Duino Elegies and Sonnets to Orpheus plumb the depths of beauty, death, and transformation.',
-   shers:[{u:'Beauty is nothing but the beginning of terror.',t:'Duino Elegies, First Elegy',ltr:true},
-          {u:'Once, each thing, only once. Once and no more. And we too, once.',t:'Duino Elegies, Ninth Elegy',ltr:true},
-          {u:'Who, if I cried out, would hear me among the angels\' hierarchies?',t:'Duino Elegies, opening line',ltr:true}]},
-  {id:16,name:'Pablo Neruda',native:'پابلو نرودا',region:'Americas',rk:'americas',era:'Modern (1904–1973)',eras:['modern'],styles:['nazm','prose'],tags:['Spanish','Chilean','Nobel'],born:'1904',died:'1973',lang:'Spanish',img:'https://images.unsplash.com/photo-1518050947974-4be8c7469f0c?w=600&q=80',
-   bio:'Nobel laureate Pablo Neruda gave the world the most passionate love poetry of the 20th century. His Twenty Love Poems remains one of the most translated books in human history.',
-   shers:[{u:'I want to do with you what spring does with the cherry trees.',t:'Twenty Love Poems — Poem XVII',ltr:true},
-          {u:'I can write the saddest lines tonight.',t:'Twenty Love Poems — Poem XX',ltr:true},
-          {u:'You can cut all the flowers, but you cannot keep spring from coming.',t:'Widely attributed',ltr:true}]},
-  {id:17,name:'Walt Whitman',native:'والٹ وٹمین',region:'Americas',rk:'americas',era:'Modern (1819–1892)',eras:['modern'],styles:['nazm'],tags:['English','American','Civil War'],born:'1819',died:'1892',lang:'English',img:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80',
-   bio:'Father of free verse. Whitman\'s Leaves of Grass broke every convention, celebrating the self, democracy, nature, and the body with operatic grandeur and democratic sweep.',
-   shers:[{u:'I am large, I contain multitudes.',t:'Song of Myself, Section 51',ltr:true},
-          {u:'Do I contradict myself? Very well then I contradict myself.',t:'Song of Myself, Section 51',ltr:true},
-          {u:'I celebrate myself, and sing myself.',t:'Song of Myself, opening line',ltr:true}]},
-  {id:18,name:'Emily Dickinson',native:'ایملی ڈکنسن',region:'Americas',rk:'americas',era:'Modern (1830–1886)',eras:['modern'],styles:['nazm'],tags:['English','American','Reclusive'],born:'1830',died:'1886',lang:'English',img:'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&q=80',
-   bio:'Emily Dickinson wrote nearly 1,800 poems, almost none published in her lifetime. Her slant rhyme, dashes, and radical compression created a voice utterly unlike any other in English.',
-   shers:[{u:'Because I could not stop for Death — He kindly stopped for me.',t:'Poem 479',ltr:true},
-          {u:'Hope is the thing with feathers that perches in the soul.',t:'Poem 254',ltr:true},
-          {u:'I\'m Nobody! Who are you? Are you — Nobody — too?',t:'Poem 288',ltr:true}]},
-  {id:19,name:'Federico García Lorca',native:'فیڈریکو لورکا',region:'Europe',rk:'europe',era:'Modern (1898–1936)',eras:['modern'],styles:['nazm','prose'],tags:['Spanish','Andalusian','Flamenco'],born:'1898',died:'1936',lang:'Spanish',img:'https://images.unsplash.com/photo-1494548162494-384bba4ab999?w=600&q=80',
-   bio:'Lorca fused flamenco, surrealism, and folk tradition into poetry of electrifying beauty. Killed at 38 by Fascists during the Spanish Civil War, he became a martyr of art and freedom.',
-   shers:[{u:'Green, how I want you green. Green wind. Green branches.',t:'Romance Sonámbulo',ltr:true},
-          {u:'At five in the afternoon. It was exactly five in the afternoon.',t:'Lament for Ignacio Sánchez Mejías',ltr:true},
-          {u:'I want to sleep the dream of apples, to withdraw from the tumult of cemeteries.',t:'Gacela of the Dark Death',ltr:true}]},
+// ══════════════════════════════════════════════════
+//  POETS DATA — 10-15 shayaris each, portrait images
+// ══════════════════════════════════════════════════
+const OVS={
+  dark:'linear-gradient(to top,rgba(13,6,4,.97) 20%,rgba(13,6,4,.5) 60%)',
+  rose:'linear-gradient(to top,rgba(76,8,26,.96) 20%,rgba(139,34,82,.42) 60%)',
+  teal:'linear-gradient(to top,rgba(6,32,42,.96) 20%,rgba(26,95,106,.42) 60%)',
+  gold:'linear-gradient(to top,rgba(52,32,0,.96) 20%,rgba(145,92,12,.42) 60%)',
+  midnight:'linear-gradient(to top,rgba(3,3,22,.97) 20%,rgba(13,13,72,.46) 60%)',
+  saffron:'linear-gradient(to top,rgba(86,32,4,.96) 20%,rgba(178,66,16,.42) 60%)',
+  forest:'linear-gradient(to top,rgba(3,18,5,.97) 20%,rgba(8,58,20,.42) 60%)',
+};
+
+const POETS=[
+{id:1,name:'Mirza Ghalib',nat:'مرزا غالب',natH:'मिर्ज़ा ग़ालिब',rk:'south-asia',region:'South Asia',
+ era:'Classical (1797–1869)',eras:['classical'],styles:['ghazal','nazm'],
+ tags:['Urdu','Persian','Delhi','Mughal'],
+ born:'27 Dec 1797, Agra, India',died:'15 Feb 1869, Delhi, India',lang:'Urdu & Persian',
+ img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80',
+ portrait:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Mirza_Ghalib.jpg/400px-Mirza_Ghalib.jpg',
+ works:['Diwan-e-Ghalib (1,457 Urdu couplets)','Kulliyat-e-Farsi (Persian collected works)','Dastanbu (prose memoir of 1857)','Khatoot-e-Ghalib (letters, considered literature)','Qata-e-Kafi (Persian masnavi)'],
+ bio:[
+   'Mirza Asadullah Baig Khan — takhallus "Ghalib" — is the undisputed emperor of Urdu poetry. He expanded the ghazal form from mere love poetry into a vessel for philosophy, wit, and existential inquiry. Born in Agra into a Turkic-Mughal aristocratic family, he moved to Delhi after his marriage at age 13.',
+   'He lived through the catastrophic fall of the Mughal Empire. The 1857 uprising and its brutal suppression by the British left him shattered — he watched his city burn and his culture destroyed. His prose memoir Dastanbu records these horrors. He spent his later years in poverty, writing letters of extraordinary beauty.',
+   'Ghalib published four revised editions of his Diwan during his lifetime, editing ruthlessly. His final edition (1862) contains 234 ghazals comprising 1,459 couplets. He was deeply influenced by Persian masters — particularly Bedil and Hafez — and considered himself primarily a Persian poet, though history proved him the supreme Urdu master.',
+ ],
+ timeline:'1797: Born Agra · 1810: Married, moved Delhi · 1826: First Diwan published · 1847: Poet Laureate of Mughal Court · 1857: Delhi falls · 1869: Dies in Delhi',
+ shers:[
+  {u:'ہزاروں خواہشیں ایسی کہ ہر خواہش پہ دم نکلے',h:'हज़ारों ख्वाहिशें ऐसी कि हर ख्वाहिश पे दम निकले',e:'A thousand desires such that upon each desire a life might pass',m:'The infinite wanting of the human heart against the brevity of life.'},
+  {u:'بہت نکلے میرے ارمان لیکن پھر بھی کم نکلے',h:'बहुत निकले मेरे अरमान, लेकिन फिर भी कم निकले',e:'Many of my longings emerged — yet even so they were too few',m:'Continuation of the above — desires are always more than a lifetime can fulfill.'},
+  {u:'دل ڈھونڈتا ہے پھر وہی فرصت کے رات دن',h:'दिल ढूँढता है फिर वही फ़ुर्सत के रात-दिन',e:'The heart searches again for those leisured days and nights',m:'Nostalgia for simpler, more peaceful times — youth, or love\'s beginning.'},
+  {u:'ہم کو معلوم ہے جنت کی حقیقت لیکن',h:'हमको मालूम है जन्नत की हक़ीक़त लेकिन',e:'We know the truth of paradise — yet Ghalib, this thought keeps the heart content',m:'Ghalib\'s characteristic wit: skeptical of heaven yet grateful for the illusion.'},
+  {u:'رگوں میں دوڑتے پھرنے کے ہم نہیں قائل',h:'रगों में दौड़ते फिरने के हम नहीं क़ाइल',e:'Simply coursing through the veins does not convince me of its worth',m:'Blood is meaningless unless it drips from the eyes as tears of passion.'},
+  {u:'جب آنکھ ہی سے نہ ٹپکا تو پھر لہو کیا ہے',h:'जब आँख ही से न टपका, तो फिर लहू क्या है',e:'If it does not drip from one\'s very eyes — what then is blood?',m:'Love must be felt so deeply it becomes tears of blood.'},
+  {u:'عشق نے غالب نکما کر دیا',h:'इश्क़ ने ग़ालिब निकम्मा कर दिया',e:'Love has rendered Ghalib utterly useless',m:'The poet confesses love destroyed his worldly capability — with rueful humor.'},
+  {u:'ورنہ ہم بھی آدمی تھے کام کے',h:'वर्ना हम भी आदमी थे काम के',e:'Otherwise I too was once a man of some use',m:'Self-deprecating humor about how love consumes all practical capacity.'},
+  {u:'ان کے دیکھے سے جو آ جاتی ہے منہ پر رونق',h:'उनके देखे से जो आ जाती है मुँह पर रौनक',e:'The radiance that comes to my face when I behold them',m:'Love briefly animates the lover — but observers mistake the symptom for health.'},
+  {u:'وہ سمجھتے ہیں کہ بیمار کا حال اچھا ہے',h:'वो समझते हैं कि बीमार का हाल अच्छा है',e:'They think the patient is doing well — when in truth he is only dying more beautifully',m:'The irony of love\'s radiance masking deeper illness.'},
+  {u:'کوئی امید بر نہیں آتی',h:'कोई उम्मीद बर नहीं आती',e:'No hope is fulfilled',m:'From one of Ghalib\'s most despairing ghazals — universal human disappointment.'},
+  {u:'کوئی صورت نظر نہیں آتی',h:'कोई सूरत नज़र नहीं आती',e:'No way out presents itself',m:'Hopelessness as total — no door visible in any direction.'},
+  {u:'آہ کو چاہیے اک عمر اثر ہونے تک',h:'आह को चाहिए एक उम्र, असर होने तक',e:'A sigh needs a whole lifetime to take effect',m:'The slowness of grief\'s expression — by the time the sigh is heard, the pain is ancient.'},
+  {u:'کون جیتا ہے تری زلف کے سر ہونے تک',h:'कौन जीता है तेरी ज़ुल्फ़ के सर होने तक',e:'Who lives long enough to see your tresses finally arranged?',m:'The beloved\'s beauty is so slow to reveal itself that one cannot survive the wait.'},
+  {u:'ہاتھوں کی لکیروں پہ مت جا اے غالب',h:'हाथों की लकीरों पे मत जा, ऐ ग़ालिब',e:'Do not go by the lines on the palm, O Ghalib',m:'Fate is not written in the hand — luck comes even to the handless.'},
+ ]},
+
+{id:2,name:'Allama Iqbal',nat:'علامہ اقبال',natH:'अल्लामा इक़बाल',rk:'south-asia',region:'South Asia',
+ era:'Modern (1877–1938)',eras:['modern'],styles:['nazm','ghazal'],
+ tags:['Urdu','Persian','Philosophy','Pakistan'],
+ born:'9 Nov 1877, Sialkot, Punjab',died:'21 Apr 1938, Lahore',lang:'Urdu & Persian',
+ img:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80',
+ portrait:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Allama_Iqbal.jpg/400px-Allama_Iqbal.jpg',
+ works:['Bang-e-Dara (Urdu, 1924)','Bal-e-Jibril (Urdu, 1935)','Zarb-e-Kalim (Urdu, 1936)','Asrar-e-Khudi (Persian, 1915)','Rumuz-e-Bekhudi (Persian, 1918)','Javid Nama (Persian, 1932)'],
+ bio:[
+   'Sir Muhammad Iqbal — Shair-e-Mashriq, "Poet of the East" — is among the 20th century\'s most consequential intellectual figures. Philosopher, lawyer, poet and visionary, he received his BA from Government College Lahore, an MA from Trinity College Cambridge, a Bar from Lincoln\'s Inn, and a PhD from Munich.',
+   'His concept of "Khudi" (the Self) — the idea that the individual must continuously strive to realize their highest spiritual and creative potential — became a philosophical revolution. His 1930 Allahabad presidential address first articulated the vision of a separate Muslim homeland in northwest India.',
+   'Iqbal wrote poetry with equal mastery in Urdu and Persian. His Persian masterwork Asrar-e-Khudi (Secrets of the Self) brought him international fame and led to his knighthood. He died in 1938, nine years before Pakistan was born — a country he dreamed but never saw.',
+ ],
+ timeline:'1877: Born Sialkot · 1905: Travels to Europe · 1908: PhD Munich · 1922: Knighted · 1930: Allahabad Address · 1938: Dies Lahore',
+ shers:[
+  {u:'خودی کو کر بلند اتنا کہ ہر تقدیر سے پہلے',h:'ख़ुदी को कर बुलंद इतना कि हर तक़दीर से पहले',e:'Raise the self so high that before every decree of destiny',m:'God Himself must consult you before writing your fate.'},
+  {u:'خدا بندے سے خود پوچھے بتا تیری رضا کیا ہے',h:'ख़ुदा बंदे से ख़ुद पूछे, बता तेरी रज़ा क्या है',e:'God Himself asks the servant: tell me, what is your wish?',m:'The pinnacle of Iqbal\'s concept of Khudi — the self so elevated that divinity consults it.'},
+  {u:'ستاروں سے آگے جہاں اور بھی ہیں',h:'सितारों से आगे जहाँ और भी हैं',e:'Beyond the stars, there are worlds yet to be discovered',m:'The universe of possibility is infinite — do not stop at what you can see.'},
+  {u:'ابھی عشق کے امتحاں اور بھی ہیں',h:'अभी इश्क़ के इम्तिहाँ और भी हैं',e:'The trials of love are not yet over — there are more yet to come',m:'Love\'s journey is never finished — there are always greater heights.'},
+  {u:'تو شاہیں ہے پرواز ہے کام تیرا',h:'तू शाहीन है, परवाज़ है काम तेरा',e:'You are a falcon — flight is your work, your very purpose',m:'The eagle/falcon as Iqbal\'s symbol for the human spirit capable of soaring.'},
+  {u:'تیرے سامنے آسمان اور بھی ہیں',h:'तेरे सामने आसमान और भी हैं',e:'Before you there are skies and skies yet to conquer',m:'The boundless possibility before every sincere soul.'},
+  {u:'اسی روز و شب میں الجھا رہا',h:'उसी रोज़-ओ-शब में उलझा रहा',e:'He remained tangled in the same days and nights',m:'On the tragedy of those who never break free from habit and routine.'},
+  {u:'اگرچہ بت بھی نہیں میں بھی آشنا نہیں',h:'अगरचे बुत भी नहीं, मैं भी आशना नहीں',e:'Though I am not an idol and not a familiar of idols either',m:'Iqbal\'s complex identity — neither traditional nor alienated.'},
+  {u:'مسلم ہوں میں مسلم ہوں',h:'मुस्लिम हूँ मैं, मुस्लिम हूँ',e:'I am a Muslim — a follower of the Friend of God',m:'Identity as spiritual inheritance, not mere label.'},
+  {u:'لہو گرم رکھنے کو کافی ہے جوش عشق',h:'लहू गर्म रखने को काफ़ी है जोश-ए-इश्क़',e:'The passion of love is sufficient to keep the blood warm',m:'Divine and earthly love together sustain the spirit through any trial.'},
+  {u:'اٹھ کہ اب بزم جہاں کا اور ہی انداز ہے',h:'उठ, कि अब बज़्म-ए-जहाँ का और ही अंदाज़ है',e:'Rise — for the world\'s gathering now has a different style altogether',m:'A call to action — the world has changed, and the self must rise to meet it.'},
+  {u:'مشرق سے ہو بیزار نہ مغرب سے حذر کر',h:'मश्रिक़ से हो बेज़ार न मग़रिब से हज़र कर',e:'Do not be repelled by the East nor frightened of the West',m:'Iqbal\'s nuanced position — take wisdom from both East and West.'},
+  {u:'دیار عشق میں اپنا مقام پیدا کر',h:'दियार-ए-इश्क़ में अपना मक़ाम पैदा कर',e:'In the realm of love, create your own station',m:'One must earn one\'s place in love — it is not given, it is achieved.'},
+ ]},
+
+{id:3,name:'Faiz Ahmed Faiz',nat:'فیض احمد فیض',natH:'फ़ैज़ अहमद फ़ैज़',rk:'south-asia',region:'South Asia',
+ era:'Modern (1911–1984)',eras:['modern'],styles:['ghazal','nazm'],
+ tags:['Urdu','Progressive','Lahore','Nobel Nominated','Resistance'],
+ born:'13 Feb 1911, Sialkot',died:'20 Nov 1984, Lahore',lang:'Urdu',
+ img:'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=80',
+ portrait:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Faiz_Ahmed_Faiz.jpg/400px-Faiz_Ahmed_Faiz.jpg',
+ works:['Naqsh-e-Faryadi (1941)','Dast-e-Saba (1952)','Zindan-Nama (1956)','Dast-e-Tah-e-Sang (1965)','Saro-Saman (1972)','Nuskha-ha-ye-Wafa (Complete, 1984)'],
+ bio:[
+   'Faiz Ahmed Faiz is the poet of love and revolution — the man who fused the lyrical vocabulary of classical Urdu romance with the political urgency of progressive socialism. He was nominated for the Nobel Prize in Literature and received the Lenin Peace Prize in 1962.',
+   'A communist and journalist, he was arrested in 1951 under the Pakistani government\'s "Rawalpindi Conspiracy Case" and spent nearly four years in prison. His prison poems — collected in Dast-e-Saba and Zindan-Nama — are among the most moving in any language, turning bars and shackles into symbols of universal liberation.',
+   'His poem "Hum Dekhenge" (We Shall Witness), set to music by Iqbal Bano and sung at a defiant 1986 concert in Lahore during Zia\'s martial law, became an anthem of resistance. It was sung again during the 2019 protests across Pakistan and India, proving that great political poetry is truly immortal.',
+ ],
+ timeline:'1911: Born Sialkot · 1941: First collection · 1951: Arrested, imprisoned · 1955: Released · 1962: Lenin Peace Prize · 1984: Dies Lahore',
+ shers:[
+  {u:'مجھ سے پہلی سی محبت مری محبوب نہ مانگ',h:'मुझ से पहली-सी मुहब्बत मेरी महबूब न माँग',e:'Ask not of me, my beloved, that love of earlier days',m:'Love cannot remain innocent when the world\'s suffering presses in.'},
+  {u:'آج بازار میں پا بجولاں چلو',h:'आज बाज़ार में पा-ब-जौलाँ चलो',e:'Come, walk today in the marketplace — in chains',m:'A call to walk with dignity and defiance even in bondage.'},
+  {u:'ہم دیکھیں گے لازم ہے کہ ہم بھی دیکھیں گے',h:'हम देखेंगे, लाज़िम है कि हम भी देखेंगे',e:'We shall witness — it is certain that we too shall witness',m:'The day when oppressors fall and the people reclaim the earth.'},
+  {u:'وہ دن کہ جس کا وعدہ ہے جو لوح ازل میں لکھا ہے',h:'वो दिन कि जिसका वादा है, जो लौह-ए-अज़ल में लिखा है',e:'That day which was promised, which is written on the eternal tablet',m:'The promised day of justice — Faiz merges Quranic imagery with communist hope.'},
+  {u:'گلوں میں رنگ بھرے باد نوبہار چلے',h:'गुलों में रंग भरे बाद-ए-नौबहार चले',e:'The wind of new spring fills the flowers with colour — come',m:'Spring as metaphor for liberation — beauty arriving after oppression.'},
+  {u:'چلے بھی آؤ کہ گلشن کا کاروبار چلے',h:'चले भी आओ कि गुलशन का कारोबार चले',e:'Come along so that the garden\'s business may begin',m:'The beloved — perhaps the revolution itself — is awaited.'},
+  {u:'دونوں جہاں تیری محبت میں ہار کے',h:'दोनों जहाँ तेरी मुहब्बत में हार के',e:'Having lost both worlds in loving you',m:'Total surrender in love — both this world and the next sacrificed.'},
+  {u:'وہ جا رہا ہے کوئی شب غم گزار کر',h:'वो जा रहा है कोई, शब-ए-ग़म गुज़ार कर',e:'Someone departs — having passed a night of grief',m:'The quiet departure after a night of sorrow — understated and devastating.'},
+  {u:'تیرے غم کو جاں کی تلاش تھی',h:'तेरे ग़म को जाँ की तलाश थी',e:'Your grief was seeking a soul to inhabit',m:'Grief as an active force seeking a host — Faiz\'s characteristic personification.'},
+  {u:'میرے دل کو جاں سے گزر گئی',h:'मेरे दिल को जाँ से गुज़र गई',e:'And it passed through my heart and through my very life',m:'The grief found its home — and consumed everything.'},
+  {u:'اب بھی دلکش ہے تیرا حسن مگر',h:'अब भी दिलकश है तेरा हुस्न, मगर',e:'Still alluring is your beauty — but',m:'Even beauty cannot distract from the world\'s suffering — but the contrast is painful.'},
+  {u:'کیا کریں آ کے پھر جہاں گردی کریں',h:'क्या करें, आ के फिर जहाँ-गर्दी करें',e:'What shall we do — come, let us wander the world again',m:'Restlessness after loss — when home is gone, wandering becomes home.'},
+ ]},
+
+{id:4,name:'Jaun Elia',nat:'جون ایلیا',natH:'जौन एलिया',rk:'south-asia',region:'South Asia',
+ era:'Contemporary (1931–2002)',eras:['contemporary'],styles:['ghazal','nazm'],
+ tags:['Urdu','Karachi','Existential','Dark','Philosopher','Nihilism'],
+ born:'14 Dec 1931, Amroha, UP, India',died:'8 Nov 2002, Karachi',lang:'Urdu',
+ img:'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=600&q=80',
+ portrait:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Jaun_Elia.jpg/400px-Jaun_Elia.jpg',
+ works:['Shayad (1991)','Yani (2003, posthumous)','Lekin (2006, posthumous)','Guman (2008, posthumous)','Framush (2009, posthumous)'],
+ bio:[
+   'Syed Hussain Jaun Asghar Naqvi — Jaun Elia — was a child prodigy who mastered Arabic, English, Persian, Hebrew, Sanskrit and Urdu before reaching adulthood. Born in Amroha (UP, India) to a family of scholars, his father corresponded with Bertrand Russell.',
+   'He migrated to Pakistan at Partition, a decision he later described as the defining tragedy of his life. He never truly adapted to Karachi, spending decades in chaos, heavy drinking, and a kind of deliberate self-destruction. He published virtually nothing for decades — then his first collection "Shayad" (Perhaps) appeared in 1991, and made him famous overnight.',
+   'He is the most quoted South Asian poet on social media — millions share his verses on heartbreak, nihilism, and the comedy of self-destruction. His philosophy was essentially: the universe is a bad joke, consciousness is a curse, and the only honest response is to embrace one\'s ruin with full awareness and dark humor.',
+ ],
+ timeline:'1931: Born Amroha · 1947: Migrates to Pakistan · 1991: Shayad published · 2002: Dies Karachi',
+ shers:[
+  {u:'میں نے کی تھی محبت اسے یاد ہوگی',h:'मैंने की थी मुहब्बत, उसे याद होगी',e:'I had loved her — she must remember',m:'The aching uncertainty of whether love is ever truly remembered.'},
+  {u:'اب وہ خود ہی بھول گئے ہوں شاید',h:'अब वो खुद ही भूल गए हों, शायद',e:'Or perhaps she herself has now forgotten — perhaps',m:'"Shayad" — Jaun\'s signature word and the title of his first book.'},
+  {u:'مجھ سے میری بربادی کا سبب نہ پوچھو',h:'मुझसे मेरी बर्बादी का सबब न पूछो',e:'Do not ask me the reason for my own ruin',m:'Jaun embraced his destruction consciously — it needs no explanation.'},
+  {u:'ہو گیا ہوں میں بہت ہی سرد مزاج اب',h:'हो गया हूँ मैं बहुत ही सर्द मिज़ाज अब',e:'I have become very cold-natured now',m:'Emotional numbness after decades of heartbreak — Jaun\'s characteristic exhaustion.'},
+  {u:'کیا تجھے کچھ اور بھی دردِ دل کی سمجھ ہے',h:'क्या तुझे कुछ और भी दर्द-ए-दिल की समझ है',e:'Do you understand anything else of the pain of the heart?',m:'A challenge to the beloved — love requires more than surface understanding.'},
+  {u:'اچھا ہوا کہ تم نے چھوڑا مجھے',h:'अच्छा हुआ कि तुमने छोड़ा मुझे',e:'Good that you left me — now at least someone is at peace',m:'Jaun\'s darkest humor — relief at being left because the beloved suffers no more.'},
+  {u:'میں مر جاتا تو بہتر تھا مگر جیتا رہا',h:'मैं मर जाता तो बेहतर था, मगर जीता रहा',e:'It would have been better if I had died — yet I kept living',m:'Survival as both gift and punishment in Jaun\'s worldview.'},
+  {u:'کیا پوچھتے ہو دل کے احوال سے',h:'क्या पूछते हो दिल के अहवाल से',e:'Why do you ask about the state of my heart?',m:'The futility of asking — some states of the heart defy description.'},
+  {u:'آوارہ پھرتا ہوں کوچہ کوچہ',h:'आवारा फिरता हूँ कूचा-कूचा',e:'I wander street to street — a vagrant of my own will',m:'Jaun\'s deliberate vagrancy — chosen exile from ordinary life.'},
+  {u:'جانتا ہوں کہ میں کچھ بھی نہیں ہوں',h:'जानता हूँ कि मैं कुछ भी नहीं हूँ',e:'I know that I am nothing — this knowing itself is something',m:'Nihilism as a paradox — knowing one is nothing is itself a form of existence.'},
+  {u:'یہ سمجھ میں نہیں آتا کیا',h:'यह समझ में नहीं आता क्या',e:'I cannot understand what is happening',m:'Bewilderment as the only honest response to life.'},
+  {u:'تم بھول گئے ہو شاید مجھے',h:'तुम भूल गए हो शायद मुझे',e:'Perhaps you have forgotten me',m:'The word "shayad" (perhaps) — always leaving room for the possibility of being remembered.'},
+ ]},
+
+{id:5,name:'Kabir Das',nat:'کبیر داس',natH:'कबीर दास',rk:'south-asia',region:'South Asia',
+ era:'Classical (c.1440–1518)',eras:['classical'],styles:['rubai','nazm'],
+ tags:['Hindi','Bhakti','Varanasi','Weaver-Mystic','Doha','Sufi'],
+ born:'c. 1440, Varanasi (Kashi)',died:'c. 1518, Maghar, UP',lang:'Hindi, Awadhi & Bhojpuri',
+ img:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80',
+ portrait:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Kabir_Weaving.jpg/400px-Kabir_Weaving.jpg',
+ works:['Bijak (Sakhi, Sabad, Ramaini)','Kabir Granthavali','Adi Granth (541 verses included)','Kabir Panth scriptures'],
+ bio:[
+   'Kabir Das is perhaps the most democratically beloved saint-poet in Indian literary history. Born into a Muslim weaver\'s family in Varanasi, tradition holds he was actually a Hindu orphan adopted by the weaver couple. He became a disciple of the Vaishnava saint Ramananda.',
+   'Kabir\'s dohas (two-line couplets) used the language of the street, the loom, the marketplace — simple Awadhi Hindi accessible to everyone. He challenged caste, priesthood, religious hypocrisy, and the division between Hinduism and Islam with the same devastating wit and compassion.',
+   'After his death, both Hindus and Muslims claimed him. Legend says when his shroud was lifted, they found only flowers — half went to a Hindu funeral pyre, half to a Muslim grave. His verses appear in the Sikh Granth Sahib (541 entries), a testament to his transcendence of all boundaries.',
+ ],
+ timeline:'c.1440: Born Varanasi · Disciple of Ramananda · Spent life as weaver-mystic · c.1518: Dies Maghar',
+ shers:[
+  {u:'',h:'माटी कहे कुम्हार से, तू क्या रौंदे मोय। एक दिन ऐसा आएगा, मैं रौंदूंगी तोय।',e:'The clay says to the potter: why do you knead me? One day will come when I shall knead you.',m:'The great leveler — today\'s powerful becomes tomorrow\'s dust.'},
+  {u:'',h:'दुख में सुमिरन सब करें, सुख में करे न कोय। जो सुख में सुमिरन करे, तो दुख काहे होय।',e:'In sorrow all remember God, in joy none do. If one remembered God in joy, why would sorrow come?',m:'Kabir\'s sharp observation on the human tendency to call on God only in distress.'},
+  {u:'',h:'बुरा जो देखन मैं चला, बुरा न मिलिया कोय। जो दिल खोजा आपना, मुझसे बुरा न कोय।',e:'I went looking for the evil man and found none. When I searched my own heart, there was none worse than me.',m:'The most celebrated of all Kabir\'s dohas — the beginning of self-knowledge.'},
+  {u:'',h:'मोको कहाँ ढूँढे रे बन्दे, मैं तो तेरे पास में।',e:'Where do you search for me, O seeker? I am near to you.',m:'God speaks through Kabir — the divine is not in pilgrimage places but within the self.'},
+  {u:'',h:'काल करे सो आज कर, आज करे सो अब। पल में प्रलय होएगी, बहुरि करेगो कब।',e:'Do tomorrow\'s work today, do today\'s work now. In a moment the world may end — when will you do it then?',m:'Do not postpone spiritual practice — the moment of death comes unannounced.'},
+  {u:'',h:'धीरे-धीरे रे मना, धीरे सब कुछ होय। माली सींचे सौ घड़ा, ऋतु आए फल होय।',e:'Slowly, slowly, O mind — all things happen slowly. The gardener may water a hundred pots, but fruit comes only with the right season.',m:'Patience in spiritual growth — one cannot rush the ripening of the soul.'},
+  {u:'',h:'जो तोको काँटा बुवे, ताहि बो तू फूल। तोहि फूल को फूल है, बाको है तिरशूल।',e:'Whoever plants thorns for you — plant flowers for them. For you, the flower is a flower; for them, it becomes a trident of pain.',m:'Return goodness for evil — the way of the saint punishes the wrongdoer through his own karma.'},
+  {u:'',h:'पोथी पढ़ि पढ़ि जग मुआ, पंडित भया न कोय। ढाई आखर प्रेम का, पढ़े सो पंडित होय।',e:'The world died reading books, yet no one became wise. Whoever reads the two-and-a-half letters of love — that one becomes truly learned.',m:'Love as the only true knowledge — all scholarship without love is empty.'},
+  {u:'',h:'कबीरा खड़ा बाजार में, माँगे सबकी खैर। न काहू से दोस्ती, न काहू से बैर।',e:'Kabir stands in the marketplace wishing well to all. No special friendship with any, no enmity with any.',m:'The ideal of equanimity and universal compassion — equal love for all.'},
+  {u:'',h:'जाती न पूछो साधु की, पूछ लीजिये ज्ञान। मोल करो तलवार का, पड़ा रहन दो म्यान।',e:'Do not ask a saint\'s caste — ask for their wisdom. Assess the worth of the sword, not the scabbard.',m:'Kabir\'s radical rejection of caste — merit is in knowledge and virtue, not birth.'},
+  {u:'',h:'पानी केरा बुदबुदा, अस मानस की जात। देखत ही छिप जाएगा, ज्यों तारा परभात।',e:'Human life is like a water bubble — appearing and disappearing like a star at dawn.',m:'Impermanence of human life as a simple, devastating image.'},
+  {u:'',h:'जब मैं था तब हरि नहीं, अब हरि है मैं नाहिं। प्रेम गली अति साँकरी, ता में दो न समाहिं।',e:'When I was, God was not. Now God is — I am not. The lane of love is very narrow — two cannot fit within it.',m:'The Sufi doctrine of fana (annihilation of self in the divine) — to find God, the ego must dissolve.'},
+ ]},
+
+{id:6,name:'Bhagavad Gita',nat:'بھگود گیتا',natH:'भगवद् गीता',rk:'south-asia',region:'South Asia',
+ era:'Ancient (c. 200 BCE)',eras:['classical'],styles:['sacred'],
+ tags:['Sanskrit','Hindu','Krishna','Arjuna','Dharma','Karma Yoga'],
+ born:'Attr. Sage Vyasa',died:'Eternal',lang:'Sanskrit',
+ img:'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80',
+ portrait:'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&q=80',
+ works:['Bhagavad Gita (18 chapters, 700 verses)','Part of Mahabharata, Book VI (Bhishma Parva)'],
+ bio:[
+   'The Bhagavad Gita ("Song of God") is a 700-verse Hindu scripture composed approximately between the 5th and 2nd century BCE, forming part of the Mahabharata. It is a dialogue between Prince Arjuna and his charioteer Lord Krishna on the battlefield of Kurukshetra, where Arjuna hesitates to fight his own cousins.',
+   'Krishna\'s counsel spans karma yoga (selfless action), jnana yoga (knowledge), and bhakti yoga (devotion). Its central teaching — that one must perform one\'s duty without attachment to outcomes — has influenced philosophers from Adi Shankaracharya to Emerson, Thoreau, Gandhi, and J. Robert Oppenheimer, who quoted it when witnessing the first nuclear test.',
+   'The Gita holds a unique pan-Hindu influence and is part of the Prasthanatrayi — the three canonical texts of Vedanta philosophy. It synthesizes Vedic, Upanishadic, Yoga, and Bhakti traditions into a practical guide for living a life of purpose, equanimity, and spiritual liberation.',
+ ],
+ timeline:'c. 3102 BCE: Kurukshetra War (traditional) · c. 400 BCE: Text composed · 788 CE: Adi Shankaracharya\'s commentary · 1785: First English translation (Charles Wilkins)',
+ shers:[
+  {u:'',h:'कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। मा कर्मफलहेतुर्भूर्मा ते संगोऽस्त्वकर्मणि। (२.४७)',e:'You have the right to perform your duties, but never to the fruits of your actions. Let not the fruit be your motive, nor be attached to inaction. (2.47)',m:'The Gita\'s most famous verse — the foundation of selfless action (Nishkama Karma Yoga).'},
+  {u:'',h:'नैनं छिद्रन्ति शस्त्राणि नैनं दहति पावकः। न चैनं क्लेदयन्त्यापो न शोषयति मारुतः। (२.२३)',e:'Weapons do not cut the soul, fire does not burn it, water does not wet it, wind does not wither it. (2.23)',m:'Krishna\'s teaching on the eternal, indestructible nature of the Atman.'},
+  {u:'',h:'यदा यदा हि धर्मस्य ग्लानिर्भवति भारत। अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्। (४.७)',e:'Whenever there is a decline in righteousness and a rise in unrighteousness, O Arjuna, I manifest myself. (4.7)',m:'Krishna\'s promise of divine incarnation whenever dharma is in danger.'},
+  {u:'',h:'श्रेयान्स्वधर्मो विगुणः परधर्मात्स्वनुष्ठितात्। स्वधर्मे निधनं श्रेयः परधर्मो भयावहः। (३.३५)',e:'Better is one\'s own dharma, though imperfectly performed, than the dharma of another well performed. Death in one\'s own dharma is noble — another\'s dharma is dangerous.',m:'Stay true to your own path, however imperfect, rather than imitating another\'s excellence.'},
+  {u:'',h:'मन एव मनुष्याणां कारणं बन्धमोक्षयोः।',e:'The mind alone is the cause of both bondage and liberation of human beings.',m:'The mind controlled is the path to liberation; the mind uncontrolled is bondage.'},
+  {u:'',h:'योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय। सिद्ध्यसिद्ध्योः समो भूत्वा समत्वं योग उच्यते। (२.४८)',e:'Be steadfast in yoga, O Arjuna. Perform your duty abandoning attachment to success or failure. Such evenness of mind is called yoga. (2.48)',m:'The definition of yoga — equanimity in action, undisturbed by outcome.'},
+  {u:'',h:'सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज। अहं त्वां सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः। (१८.६६)',e:'Abandoning all duties, take refuge in Me alone. I shall liberate you from all sins — do not grieve. (18.66)',m:'The Gita\'s final and most radical promise — total surrender to the divine as the path of liberation.'},
+  {u:'',h:'समोऽहं सर्वभूतेषु न मे द्वेष्योऽस्ति न प्रियः। (९.२९)',e:'I am equally present in all beings — there is none hateful or dear to me.',m:'Divine impartiality — God sees no enemy and no favorite among all creation.'},
+  {u:'',h:'अहं वैश्वानरो भूत्वा प्राणिनां देहमाश्रितः। प्राणापानसमायुक्तः पचाम्यन्नं चतुर्विधम्।',e:'I am the universal fire dwelling in the bodies of all living beings. Associated with in-breath and out-breath, I digest the four kinds of food.',m:'Krishna as the digestive fire within every living body — the divine as utterly ordinary and immanent.'},
+  {u:'',h:'त्रिविधं नरकस्येदं द्वारं नाशनमात्मनः। कामः क्रोधस्तथा लोभस्तस्मादेतत्त्रयं त्यजेत्। (१६.२१)',e:'Three are the gates of hell that destroy the soul — lust, anger, and greed. Therefore one should abandon all three. (16.21)',m:'The three root causes of human suffering and downfall.'},
+ ]},
+
+{id:7,name:'Rumi',nat:'رومی',natH:'रूमी',rk:'central-asia',region:'Central Asia',
+ era:'Classical (1207–1273)',eras:['classical'],styles:['ghazal','nazm'],
+ tags:['Persian','Sufi','Konya','Masnavi','Whirling Dervishes'],
+ born:'30 Sep 1207, Wakhsh, Tajikistan',died:'17 Dec 1273, Konya, Turkey',lang:'Persian',
+ img:'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=80',
+ portrait:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Mevlana_Museum_Ceiling.jpg/400px-Mevlana_Museum_Ceiling.jpg',
+ works:['Masnavi-ye Ma\'navi (6 volumes, 25,000 verses)','Divan-e-Shams-e-Tabrizi (40,000+ verses)','Fihi Ma Fihi (prose discourses)','Makatib (letters)','Majalis-e-Sab\'a (7 sermons)'],
+ bio:[
+   'Jalal ad-Din Muhammad Balkhi — Mevlana, Rumi — is the world\'s best-selling poet in any language in the 21st century. Born in Balkh (present Afghanistan/Tajikistan border), he fled westward with his family to escape the Mongol invasions, eventually settling in Konya, Anatolia (present Turkey), where he spent the rest of his life.',
+   'The transformative encounter with the wandering dervish Shams-e-Tabrizi in Konya in 1244 sent Rumi into a spiritual revolution. He lost himself in ecstasy, in poetry, in whirling — the sama. After Shams mysteriously disappeared (almost certainly murdered by Rumi\'s jealous disciples), Rumi channeled his grief and love into the Divan-e-Shams — tens of thousands of verses of agonized, ecstatic devotion.',
+   'His Masnavi — six volumes, approximately 25,000 couplets — is called "the Quran in Persian" by his followers. Rumi founded the Mevlevi Order (the Whirling Dervishes), whose sama ceremony was inscribed on UNESCO\'s Intangible Cultural Heritage list in 2008.',
+ ],
+ timeline:'1207: Born Balkh · 1215: Family flees Mongols · 1244: Meets Shams · 1248: Shams disappears · 1249: Masnavi begins · 1273: Dies Konya',
+ shers:[
+  {u:'بشنو این نی چون شکایت می‌کند',h:'सुनो इस नय को, वह शिकायत करती है',e:'Listen to the reed flute — hear how it tells of separation\'s pain',m:'The opening verse of the Masnavi — the reed as the human soul exiled from its origin in the reed bed of God.'},
+  {u:'از جدایی‌ها حکایت می‌کند',h:'अलगाव से कहानी कहती है',e:'From separation it tells its tales',m:'The reed\'s music is the music of longing for reunion with the divine source.'},
+  {u:'آتش عشق است کاندر نی فتاد',h:'प्रेम की आग है जो बाँसुरी में पड़ी',e:'It is the fire of love that has fallen into the reed',m:'Love as the animating fire — without it the reed is just wood, the human just body.'},
+  {u:'جوشش عشق است کاندر می فتاد',h:'प्रेम का जोश है जो शराब में पड़ा',e:'The fermentation of love that falls into the wine',m:'Love transforms everything it enters — wood becomes music, grape becomes wine, human becomes divine.'},
+  {u:'خاموش باش و بی خبر باش',h:'चुप रहो, बेख़बर रहो',e:'Be silent — be without knowledge',m:'True wisdom begins in surrender of the knowing mind. Silence is the ocean of knowledge.'},
+  {u:'من کجا بودم عجب کو بود من',h:'मैं कहाँ था? अजीब — मैं कहाँ था?',e:'Where was I? Strange — where was I?',m:'The ecstatic dissolution of self-consciousness in divine love — identity dissolves.'},
+  {u:'آدمی را عقل باید در بدن',h:'मनुष्य को देह में बुद्धि चाहिए',e:'A human needs wisdom within the body',m:'Wisdom must be incarnated — not abstract, but lived in the flesh.'},
+  {u:'زاهد خام‌طمع را که بود روزه و نماز',h:'कच्चे लालची तपस्वी का क्या होगा रोज़ा और नमाज़',e:'What use is fasting and prayer to the greedy, raw ascetic?',m:'Rumi\'s critique of formal religion without inner transformation.'},
+  {u:'من سرگشتگی بی‌حد دارم',h:'मैं अनंत भटकन में हूँ',e:'I have boundless bewilderment',m:'The mystic\'s blessed confusion — the sign of genuine seeking.'},
+  {u:'عشق آتش است و من پروانه‌ام',h:'इश्क़ आग है और मैं परवाना',e:'Love is fire and I am the moth',m:'The moth that flies into the flame — annihilation in love as the highest aspiration.'},
+  {u:'مست شو مست شو ای جان پر هوس',h:'मस्त हो, मस्त हो, ओ लालसा-भरी आत्मा',e:'Be intoxicated, be intoxicated, O desire-filled soul',m:'Divine intoxication as the only cure for worldly desire.'},
+  {u:'پای بر سر نه کاسهٔ این چرخ را',h:'इस आकाश के कटोरे पर पाँव रख',e:'Put your foot on top of this spinning bowl of the sky',m:'Transcend the material universe — step on the cosmos itself in your spiritual journey.'},
+ ]},
+
+{id:8,name:'Franz Kafka',nat:'فرانز کافکا',natH:'फ्रांज़ काफ़्का',rk:'europe',region:'Europe',
+ era:'Modern (1883–1924)',eras:['modern'],styles:['prose'],
+ tags:['Czech','German','Absurdist','Prague','Existential','Metamorphosis'],
+ born:'3 Jul 1883, Prague, Austro-Hungarian Empire',died:'3 Jun 1924, Kierling, Austria',lang:'German',
+ img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80',
+ portrait:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Kafka_portrait.jpg/400px-Kafka_portrait.jpg',
+ works:['The Metamorphosis (1915)','In the Penal Colony (1919)','The Trial (posthumous, 1925)','The Castle (posthumous, 1926)','Amerika (posthumous, 1927)','Letter to His Father (written 1919, published 1952)'],
+ bio:[
+   'Franz Kafka is the 20th century\'s most influential prose writer — a Jewish insurance clerk from Prague who wrote in German and created allegories of alienation, bureaucratic power, and existential dread that feel more relevant with every passing decade.',
+   'He published almost nothing in his lifetime. The Metamorphosis (1915) — in which a man wakes up as a giant insect — and In the Penal Colony were among the few works he released. He repeatedly begged his lifelong friend Max Brod to burn all his manuscripts after his death. Brod refused, and the world received The Trial, The Castle, and Amerika.',
+   'Kafka died of tuberculosis at 40, contracting the disease while picking roses for a visitor. His name became an adjective — "Kafkaesque" — for nightmarish, bureaucratic, senseless systems of power. He suffered from intense self-doubt, a domineering father, and a series of broken engagements. His diaries reveal a man of extraordinary sensitivity and dark humor.',
+ ],
+ timeline:'1883: Born Prague · 1906: Law degree · 1915: Metamorphosis published · 1922: Resigns due to illness · 1924: Dies tuberculosis, Kierling',
+ shers:[
+  {u:'',h:'',e:'There is infinite hope — but not for us.',m:'From a conversation recorded by Max Brod. The universe\'s abundance is structurally withheld from human beings.'},
+  {u:'',h:'',e:'A book must be the axe for the frozen sea within us.',m:'Letter to Oskar Pollak, 1904. The essential function of literature — to shatter complacency.'},
+  {u:'',h:'',e:'In the struggle between yourself and the world, back the world.',m:'Zurau Aphorism. Kafka\'s characteristic self-deflation — the self\'s weakness against reality\'s weight.'},
+  {u:'',h:'',e:'I am a cage in search of a bird.',m:'The most compact image of creative and spiritual emptiness — needing something to contain.'},
+  {u:'',h:'',e:'Every revolution evaporates and leaves behind only the slime of a new bureaucracy.',m:'Kafka\'s dark political wisdom — change produces new forms of the same oppression.'},
+  {u:'',h:'',e:'One must not cheat anyone, not even the world of its victory.',m:'From The Trial — do not deny the world\'s power to crush you. Acknowledge it honestly.'},
+  {u:'',h:'',e:'Paths are made by walking.',m:'One of Kafka\'s most frequently cited aphorisms — no path exists before you take it.'},
+  {u:'',h:'',e:'Logic may indeed be unshakeable, but it cannot withstand a man who wants to go on living.',m:'From The Trial — the absurdity of logic against the will to survive.'},
+  {u:'',h:'',e:'From the true antagonist, infinite courage flows into you.',m:'Zurau Aphorism — paradoxically, opposition gives you strength.'},
+  {u:'',h:'',e:'I have the feeling that I have not been deceived, but rather that I have been cheated.',m:'On the experience of being systematically misled — rather than simply fooled.'},
+  {u:'',h:'',e:'My writing was about you; in it I was only pouring out the grief I could not sigh out at your breast.',m:'Letter to his Father — the entire literary output as an undeliverable letter to an unreachable parent.'},
+ ]},
+
+{id:9,name:'Pablo Neruda',nat:'پابلو نرودا',natH:'पाब्लो नेरुदा',rk:'americas',region:'Americas',
+ era:'Modern (1904–1973)',eras:['modern'],styles:['nazm','prose'],
+ tags:['Spanish','Chilean','Nobel','Communist','Love Poetry'],
+ born:'12 Jul 1904, Parral, Chile',died:'23 Sep 1973, Santiago, Chile',lang:'Spanish',
+ img:'https://images.unsplash.com/photo-1518050947974-4be8c7469f0c?w=600&q=80',
+ portrait:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Pablo_Neruda_1963.jpg/400px-Pablo_Neruda_1963.jpg',
+ works:['Twenty Love Poems and a Song of Despair (1924)','Residence on Earth (1933, 1935)','Canto General (1950)','Elementary Odes (1954–1957)','100 Love Sonnets (1960)','Memoirs (1974, posthumous)'],
+ bio:[
+   'Ricardo Eliecer Neftalí Reyes Basoalto — Pablo Neruda — began writing poetry at age 10 and published his first book at 16. He is the most widely read Spanish-language poet of the 20th century. His Nobel Prize citation (1971) praised him for "poetry that with the action of an elemental force brings alive a continent\'s destiny and dreams."',
+   'He served as Chilean consul in Rangoon, Sri Lanka, Java, Argentina and Spain, and was elected to the Chilean Senate as a Communist Party member. When Pinochet\'s coup overthrew Allende\'s government in September 1973, Neruda died just 12 days later — officially of heart failure, though many suspected he was poisoned.',
+   'His Twenty Love Poems and a Song of Despair, written when he was 19, remains one of the most translated books in human history. The collection portrays a young man\'s passionate, anguished love with an imagery so vivid — bodies, rain, stars, rivers — it feels physically overwhelming.',
+ ],
+ timeline:'1904: Born Parral · 1924: Twenty Love Poems · 1948: Exiled after anti-government speech · 1952: Returns Chile · 1971: Nobel Prize · 1973: Dies Santiago',
+ shers:[
+  {u:'',h:'',e:'I want to do with you what spring does with the cherry trees.',m:'From Twenty Love Poems, Poem XVII — perhaps the most sensual metaphor in 20th century love poetry.'},
+  {u:'',h:'',e:'I can write the saddest lines tonight. I loved her, and sometimes she loved me too.',m:'Twenty Love Poems, Poem XX — the asymmetry of love told with brutal simplicity.'},
+  {u:'',h:'',e:'Tonight I can write the saddest lines — to think that I do not have her, to feel that I have lost her.',m:'The exquisite pain of remembering a love that is over.'},
+  {u:'',h:'',e:'You can cut all the flowers, but you cannot keep spring from coming.',m:'On the indestructibility of beauty, hope, and love.'},
+  {u:'',h:'',e:'I love you without knowing how, or when, or from where. I love you simply, without problems or pride.',m:'From Sonnet XVII — love as pure, uncaused, originary.'},
+  {u:'',h:'',e:'If you forget me — I want you to know one thing. If you think it long and mad, the wind of banners that passes through my life — and you decided to leave me at the shore of the heart where I have roots — remember that on that day, at that hour, I shall lift my arms and my roots will set off to seek another land.',m:'From If You Forget Me — love\'s ultimatum, stated with extraordinary grace.'},
+  {u:'',h:'',e:'Love is so short, forgetting is so long.',m:'From Poem XX — perhaps the most cited single line in the entire Twenty Love Poems.'},
+  {u:'',h:'',e:'I want to do with you what spring does with the cherry trees.',m:'Repeated because it is the most beloved — each reading reveals new beauty.'},
+  {u:'',h:'',e:'In the end you will bury me without knowing that you carry a part of me — everything I learned in the world came from you.',m:'On the invisible way one person shapes another without knowing it.'},
+  {u:'',h:'',e:'Then love knew it was called love. And when I lifted my eyes to your name, suddenly your heart showed me my way.',m:'From 100 Love Sonnets — naming love as the beginning of knowing it.'},
+  {u:'',h:'',e:'I want to do with you what spring does with the cherry trees.',m:'From Neruda\'s most beloved poem — love as transformation, not possession.'},
+ ]},
 ];
 
-const REGIONS = [
+const REGIONS=[
   {k:'south-asia',name:'South Asia',sub:'India · Pakistan · Bangladesh',img:'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80'},
   {k:'persia',name:'Persia / Iran',sub:'Iran · Afghanistan · Tajikistan',img:'https://images.unsplash.com/photo-1553701879-4b8d58b24b8c?w=600&q=80'},
   {k:'central-asia',name:'Central Asia',sub:'Turkey · Uzbekistan · Konya',img:'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=80'},
   {k:'middle-east',name:'Middle East',sub:'Iraq · Syria · Arabia',img:'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&q=80'},
-  {k:'europe',name:'Europe',sub:'Germany · Spain · Czech Republic',img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80'},
-  {k:'americas',name:'Americas',sub:'USA · Chile · Latin America',img:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80'},
+  {k:'europe',name:'Europe',sub:'Germany · Czech Republic · Spain',img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80'},
+  {k:'americas',name:'Americas',sub:'USA · Chile · Mexico',img:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80'},
 ];
 
-const FEED_INIT = [
-  {id:'f1',rtl:'دل ڈھونڈتا ہے پھر وہی فرصت کے رات دن',ltr:'',trans:'The heart seeks again those leisured nights and days',author:'Ghalib',bg:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80',cat:'dard',ov:'dark',likes:284,user:false},
-  {id:'f2',rtl:'مجھ سے پہلی سی محبت مری محبوب نہ مانگ',ltr:'',trans:'Ask not of me, my beloved, that love of earlier days',author:'Faiz',bg:'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&q=80',cat:'ishq',ov:'rose',likes:512,user:false},
-  {id:'f3',rtl:'خودی کو کر بلند اتنا کہ ہر تقدیر سے پہلے',ltr:'',trans:'Raise yourself so high that God asks you before writing your destiny',author:'Iqbal',bg:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80',cat:'zindagi',ov:'teal',likes:389,user:false},
-  {id:'f4',rtl:'رنجش ہی سہی دل ہی دکھانے کے لیے آ',ltr:'',trans:'Even in anger — come, just to wound this heart, come',author:'Ahmad Faraz',bg:'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=900&q=80',cat:'ishq',ov:'midnight',likes:671,user:false},
-  {id:'f5',rtl:'بلھا کی جاناں میں کون',ltr:'',trans:'Bulleh, what do I know who I am?',author:'Bulleh Shah',bg:'https://images.unsplash.com/photo-1494548162494-384bba4ab999?w=900&q=80',cat:'zindagi',ov:'gold',likes:445,user:false},
-  {id:'f6',rtl:'',ltr:'There is infinite hope — but not for us.',trans:'One of Kafka\'s most haunting observations on the human condition',author:'Franz Kafka',bg:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80',cat:'existential',ov:'midnight',likes:338,user:false},
-  {id:'f7',rtl:'',ltr:'Beauty is nothing but the beginning of terror.',trans:'Duino Elegies — Rilke on the threshold between beauty and annihilation',author:'Rilke',bg:'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=900&q=80',cat:'existential',ov:'dark',likes:291,user:false},
-  {id:'f8',rtl:'',ltr:'I want to do with you what spring does with the cherry trees.',trans:'Twenty Love Poems — Neruda\'s most beloved line',author:'Pablo Neruda',bg:'https://images.unsplash.com/photo-1518050947974-4be8c7469f0c?w=900&q=80',cat:'ishq',ov:'rose',likes:788,user:false},
-  {id:'f9',rtl:'بشنو این نی چون شکایت می‌کند',ltr:'',trans:'Listen to the reed flute — how it tells of separation',author:'Rumi',bg:'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=900&q=80',cat:'dard',ov:'teal',likes:502,user:false},
-  {id:'f10',rtl:'',ltr:'Green, how I want you green. Green wind. Green branches.',trans:'Romance Sonámbulo — Lorca\'s hypnotic incantation of longing',author:'Federico Lorca',bg:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=900&q=80',cat:'nature',ov:'forest',likes:264,user:false},
-  {id:'f11',rtl:'',ltr:'Where the mind is without fear and the head is held high.',trans:'Gitanjali — Tagore\'s prayer for a free nation',author:'Tagore',bg:'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=900&q=80',cat:'watan',ov:'gold',likes:413,user:false},
-  {id:'f12',rtl:'الف اللہ چمبے دی بوٹی',ltr:'',trans:'The letter Alif — God — is a jasmine plant planted in my heart by the spiritual guide',author:'Bulleh Shah',bg:'https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=900&q=80',cat:'zindagi',ov:'gold',likes:376,user:false},
+const FEED_INIT=[
+  {id:'f1',u:'ہزاروں خواہشیں ایسی کہ ہر خواہش پہ دم نکلے',h:'हज़ारों ख्वाहिशें ऐसی कि हर ख्वाहिश पे दम निकले',e:'A thousand desires — each one demanding a lifetime',trans:'— Mirza Ghalib',author:'Mirza Ghalib',bg:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80',cat:'dard',ov:'dark',likes:1892,user:false},
+  {id:'f2',u:'مجھ سے پہلی سی محبت مری محبوب نہ مانگ',h:'मुझ से पहली-सी मुहब्बत मेरी महबूब न माँग',e:'Ask not of me, my beloved, that love of earlier days',trans:'The world\'s suffering has made innocent love impossible. — Faiz Ahmed Faiz',author:'Faiz Ahmed Faiz',bg:'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&q=80',cat:'ishq',ov:'rose',likes:2241,user:false},
+  {id:'f3',u:'خودی کو کر بلند اتنا کہ ہر تقدیر سے پہلے',h:'ख़ुदी को कर बुलंद इतना कि हर तक़दीर से पहले',e:'Raise the self so high that before every decree of fate — God asks: what is your wish?',trans:'— Allama Iqbal, Bal-e-Jibril',author:'Allama Iqbal',bg:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80',cat:'zindagi',ov:'teal',likes:1856,user:false},
+  {id:'f4',u:'',h:'कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।',e:'You have the right to perform your duties — never to the fruits of your actions. (Bhagavad Gita 2.47)',trans:'The Gita\'s most famous verse — selfless action without attachment to results.',author:'Bhagavad Gita',bg:'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=900&q=80',cat:'sacred',ov:'saffron',likes:3341,user:false},
+  {id:'f5',u:'',h:'बुरा जो देखन मैं चला, बुरा न मिलिया कोय। जो दिल खोजा आपना, मुझसे बुरा न कोय।',e:'I went looking for the evil man and found none. When I searched my own heart — none was worse than me.',trans:'Kabir\'s greatest doha on self-examination.',author:'Kabir Das',bg:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=900&q=80',cat:'existential',ov:'forest',likes:2178,user:false},
+  {id:'f6',u:'بشنو این نی چون شکایت می‌کند',h:'सुनो इस नय को, वह शिकायत करती है',e:'Listen to the reed flute — hear how it tells of separation\'s pain',trans:'The opening of Rumi\'s Masnavi — the reed as the soul exiled from its divine source.',author:'Rumi',bg:'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=900&q=80',cat:'dard',ov:'teal',likes:1932,user:false},
+  {id:'f7',u:'',h:'',e:'There is infinite hope — but not for us.',trans:'Kafka\'s most haunting aphorism — the universe\'s abundance structurally denied to humans.',author:'Franz Kafka',bg:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80',cat:'existential',ov:'midnight',likes:1134,user:false},
+  {id:'f8',u:'',h:'',e:'I want to do with you what spring does with the cherry trees.',trans:'From Twenty Love Poems — Neruda\'s most beloved line of the 20th century.',author:'Pablo Neruda',bg:'https://images.unsplash.com/photo-1518050947974-4be8c7469f0c?w=900&q=80',cat:'ishq',ov:'rose',likes:2907,user:false},
+  {id:'f9',u:'ہم دیکھیں گے لازم ہے کہ ہم بھی دیکھیں گے',h:'हम देखेंगे, लाज़िम है कि हम भी देखेंगे',e:'We shall witness — it is certain that we too shall witness that promised day',trans:'Faiz\'s anthem of revolution, sung at protests from Lahore to Delhi.',author:'Faiz Ahmed Faiz',bg:'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&q=80',cat:'watan',ov:'midnight',likes:3290,user:false},
+  {id:'f10',u:'',h:'ॐ असतो मा सद्गमय। तमसो मा ज्योतिर्गमय। मृत्योर्माऽमृतं गमय।',e:'From falsehood lead me to truth. From darkness lead me to light. From death lead me to immortality.',trans:'The Pavamana Mantra — Brihadaranyaka Upanishad 1.3.28. One of the most ancient prayers on Earth.',author:'Upanishads',bg:'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=900&q=80',cat:'sacred',ov:'saffron',likes:4124,user:false},
+  {id:'f11',u:'میں نے کی تھی محبت اسے یاد ہوگی',h:'मैंने की थी मुहब्बत, उसे याद होगी',e:'I had loved her — she must remember',trans:'Jaun Elia\'s aching uncertainty — the title of his first collection is "Shayad" (Perhaps).',author:'Jaun Elia',bg:'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=900&q=80',cat:'dard',ov:'dark',likes:2156,user:false},
+  {id:'f12',u:'',h:'पोथी पढ़ि पढ़ि जग मुआ, पंडित भया न कोय। ढाई आखर प्रेम का, पढ़े सो पंडित होय।',e:'The world died reading books yet none became wise. Whoever reads the two-and-a-half letters of love — that one is truly learned.',trans:'Kabir\'s most celebrated doha on love as the only true knowledge.',author:'Kabir Das',bg:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=900&q=80',cat:'ishq',ov:'gold',likes:2876,user:false},
 ];
 
-const BG_LIST = [
+const BG_LIST=[
   {l:'Mughal Night',u:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80'},
   {l:'Desert Stars',u:'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=900&q=80'},
   {l:'Rose Garden',u:'https://images.unsplash.com/photo-1518050947974-4be8c7469f0c?w=900&q=80'},
+  {l:'Sacred Temple',u:'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=900&q=80'},
   {l:'Mist Peaks',u:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=900&q=80'},
   {l:'Persian Dusk',u:'https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=900&q=80'},
   {l:'Galaxy',u:'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80'},
-  {l:'Autumn Lake',u:'https://images.unsplash.com/photo-1542401886-65d6c61db217?w=900&q=80'},
-  {l:'Ancient Door',u:'https://images.unsplash.com/photo-1494548162494-384bba4ab999?w=900&q=80'},
-  {l:'Night Bloom',u:'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=900&q=80'},
-  {l:'Ink & Rain',u:'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&q=80'},
   {l:'Prague Fog',u:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80'},
   {l:'Forest Light',u:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=900&q=80'},
+  {l:'Ink & Rain',u:'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&q=80'},
+  {l:'Ancient Door',u:'https://images.unsplash.com/photo-1494548162494-384bba4ab999?w=900&q=80'},
+  {l:'Night Bloom',u:'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=900&q=80'},
 ];
 
-const OVS = {
-  dark:'linear-gradient(to top,rgba(13,6,4,.97) 24%,rgba(13,6,4,.52) 64%)',
-  rose:'linear-gradient(to top,rgba(78,8,28,.96) 24%,rgba(139,34,82,.44) 64%)',
-  teal:'linear-gradient(to top,rgba(7,36,46,.96) 24%,rgba(26,95,106,.44) 64%)',
-  gold:'linear-gradient(to top,rgba(54,36,0,.96) 24%,rgba(145,96,16,.44) 64%)',
-  midnight:'linear-gradient(to top,rgba(3,3,26,.97) 24%,rgba(16,16,76,.48) 64%)',
-  forest:'linear-gradient(to top,rgba(3,22,8,.97) 24%,rgba(10,62,24,.44) 64%)',
-};
-
-const TRACKS = [
+const TRACKS=[
   {title:'Tum Itna Jo Muskura Rahe Ho — Jagjit Singh',url:'https://www.youtube.com/watch?v=8JwWHN4DJHE'},
   {title:'Aaj Jaane Ki Zid Na Karo — Farida Khanum',url:'https://www.youtube.com/watch?v=wYjTUXNOKio'},
   {title:'Chupke Chupke — Ghulam Ali',url:'https://www.youtube.com/watch?v=TOwTzEt_9Ac'},
   {title:'Dil Dhundta Hai — Jagjit Singh',url:'https://www.youtube.com/watch?v=PJMHRRb4YNM'},
   {title:'Rung — Abida Parveen',url:'https://www.youtube.com/watch?v=GfkQrE0CajQ'},
-  {title:'Tu Jhoom — Naseebo Lal',url:'https://www.youtube.com/watch?v=1Ot6HOimvho'},
-  {title:'Yeh Dil Yeh Pagal Dil — Mehdi Hassan',url:'https://www.youtube.com/watch?v=yAtMYJnOiJU'},
+  {title:'Bulleya — Amit Trivedi',url:'https://www.youtube.com/watch?v=9hAnQdIW3EM'},
+  {title:'Kun Faya Kun — AR Rahman',url:'https://www.youtube.com/watch?v=T94PHkuydcw'},
   {title:'Nit Khair Manga — Rahat Fateh Ali Khan',url:'https://www.youtube.com/watch?v=QYFp_7_OQPA'},
+  {title:'Yeh Dil Yeh Pagal Dil — Mehdi Hassan',url:'https://www.youtube.com/watch?v=yAtMYJnOiJU'},
+  {title:'Tu Jhoom — Naseebo Lal',url:'https://www.youtube.com/watch?v=1Ot6HOimvho'},
 ];
 
-// ═══════════════════════════════════════
-//  STATE
-// ═══════════════════════════════════════
-let userPosts = [];
-let selBg     = BG_LIST[0].u;
-let verseDir  = 'rtl';   // current writing direction
-let exFilter  = 'all';
-let exSearch  = '';
-let fdFilter  = 'all';
-let fdSearch  = '';
-let likedSet  = new Set();
-let trackIdx  = 0;
-let shuffleOn = false;
-let miniPlayer= false;
-let isPlaying = false;
-let ytWin     = null;
-let simInt    = null;
-let simProg   = 0;
+// ══════ STATE ══════
+let userPosts=[],selBg=BG_LIST[0].u,verseDir='rtl';
+let exF='all',exS='',fdF='all',fdS='',displaySc='all',feedSc='all';
+let likedSet=new Set(),tidx=0,shufOn=false,miniP=false;
+let isPlay=false,ytWin=null,simInt=null,simP=0;
 
-// ═══════════════════════════════════════
-//  BOOT
-// ═══════════════════════════════════════
-window.addEventListener('load', () => {
-  renderPoets(POETS);
-  renderRegions();
-  renderFeed();
-  renderBgPicker();
-  renderPlaylist();
-  spawnPetals();
-  updatePreview();
+// ══════ BOOT ══════
+window.addEventListener('load',()=>{
+  renderPoets(POETS);renderRegions();renderFeed();
+  renderBgPicker();renderPlaylist();spawnPetals();updPv();
 });
 
-// ═══════════════════════════════════════
-//  TABS
-// ═══════════════════════════════════════
-function switchTab(t) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + t).classList.add('active');
-  document.querySelector('.nav-tab[data-tab="' + t + '"]').classList.add('active');
+// ══════ TABS / NAVIGATION ══════
+function gTab(t){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.ntab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('page-'+t).classList.add('on');
+  document.querySelector('.ntab[data-tab="'+t+'"]').classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ═══════════════════════════════════════
-//  DIRECTION TOGGLE  ← the main fix ←
-// ═══════════════════════════════════════
-function setDir(dir) {
-  verseDir = dir;
-  const ta = document.getElementById('c-verse');
-  // swap classes
-  ta.classList.remove('rtl','ltr');
-  ta.classList.add(dir);
-  // update placeholder
-  ta.placeholder = dir === 'rtl'
-    ? 'یہاں اپنی شاعری لکھیں... (Urdu / Arabic / Hindi)'
-    : 'Write your verse here... (English / French / Spanish / any LTR)';
-  // toggle button active state
-  document.getElementById('btn-rtl').classList.toggle('active', dir === 'rtl');
-  document.getElementById('btn-ltr').classList.toggle('active', dir === 'ltr');
-  // re-focus so cursor is placed correctly
-  ta.focus();
-  updatePreview();
+function backToExplore(){gTab('explore');}
+
+// ══════ SCRIPT TOGGLES ══════
+function setSc(s){
+  displaySc=s;
+  ['all','urdu','hindi','eng'].forEach(k=>document.getElementById('sb-'+k).classList.toggle('on',k===s));
 }
-
-// ═══════════════════════════════════════
-//  EXPLORE
-// ═══════════════════════════════════════
-function onExSearch() { exSearch = document.getElementById('ex-search').value.toLowerCase(); applyEx(); }
-function clrExSearch() { document.getElementById('ex-search').value=''; exSearch=''; applyEx(); }
-
-function fEx(key, btn) {
-  exFilter = key;
-  document.querySelectorAll('#ex-filters .chip').forEach(c => c.classList.remove('on'));
-  btn.classList.add('on');
-  applyEx();
-}
-
-function applyEx() {
-  let list = POETS;
-  if (exFilter !== 'all') list = list.filter(p => p.rk===exFilter || p.styles.includes(exFilter) || p.eras.includes(exFilter));
-  if (exSearch) list = list.filter(p =>
-    p.name.toLowerCase().includes(exSearch) ||
-    p.region.toLowerCase().includes(exSearch) ||
-    p.lang.toLowerCase().includes(exSearch) ||
-    p.tags.some(t => t.toLowerCase().includes(exSearch)) ||
-    p.styles.some(s => s.toLowerCase().includes(exSearch))
-  );
-  renderPoets(list);
-}
-
-function renderPoets(list) {
-  const g = document.getElementById('pgrid');
-  g.innerHTML = '';
-  if (!list.length) { g.innerHTML = '<p class="empty">No poets found. Try a different search or filter.</p>'; return; }
-  list.forEach((p, i) => {
-    const d = document.createElement('div');
-    d.className = 'pcard';
-    d.style.animationDelay = (i * 0.055) + 's';
-    d.innerHTML =
-      '<div class="pcard-img" style="background-image:url(\'' + p.img + '\')"></div>' +
-      '<div class="pcard-ov"></div>' +
-      '<div class="pcard-body">' +
-        '<div class="pc-region">' + p.region + '</div>' +
-        '<div class="pc-name">' + p.name + '</div>' +
-        (p.native ? '<div class="pc-native">' + p.native + '</div>' : '') +
-        '<div class="pc-era">' + p.era + '</div>' +
-        '<div class="pc-tags">' +
-          p.styles.map(t=>'<span class="tag">'+t+'</span>').join('') +
-          p.tags.slice(0,3).map(t=>'<span class="tag">'+t+'</span>').join('') +
-        '</div>' +
-      '</div>';
-    d.addEventListener('click', () => openModal(p));
-    g.appendChild(d);
-  });
-}
-
-// ═══════════════════════════════════════
-//  MAP
-// ═══════════════════════════════════════
-function renderRegions() {
-  const g = document.getElementById('rgrid');
-  g.innerHTML = '';
-  REGIONS.forEach(r => {
-    const cnt = POETS.filter(p => p.rk === r.k).length;
-    const d = document.createElement('div');
-    d.className = 'rcard';
-    d.innerHTML = '<div class="rcard-bg" style="background-image:url(\'' + r.img + '\')">' +
-      '<div class="rcard-ov"><div class="r-name">' + r.name + '</div>' +
-      '<div class="r-sub">' + r.sub + '</div>' +
-      (cnt ? '<div class="r-cnt">'+cnt+' Poet'+(cnt!==1?'s':'')+'</div>' : '') +
-      '</div></div>';
-    d.addEventListener('click', () => {
-      switchTab('explore');
-      setTimeout(() => {
-        const btn = document.querySelector('#ex-filters .chip[data-f="'+r.k+'"]');
-        if (btn) fEx(r.k, btn);
-      }, 80);
-    });
-    g.appendChild(d);
-  });
-}
-
-// ═══════════════════════════════════════
-//  MODAL
-// ═══════════════════════════════════════
-function openModal(p) {
-  const shersHtml = p.shers.map(s => {
-    const isLtr = s.ltr === true;
-    return '<div class="msher">' +
-      '<div class="' + (isLtr ? 'msher-ltr' : 'msher-rtl') + '">' + s.u + '</div>' +
-      (s.t ? '<div class="msher-t">' + s.t + '</div>' : '') +
-      '</div>';
-  }).join('');
-  document.getElementById('modal-inner').innerHTML =
-    '<button class="mclose" onclick="closeModal()">✕</button>' +
-    '<div class="mimg" style="background-image:url(\'' + p.img + '\')">' +
-      '<div class="mimg-ov"></div>' +
-      '<div class="mimg-txt"><div class="m-region">'+p.region+'</div>' +
-      '<div class="m-name">'+p.name+'</div>' +
-      (p.native?'<div class="m-native">'+p.native+'</div>':'')+
-      '</div></div>' +
-    '<div class="mgrid">' +
-      '<div><div class="mkey">Born</div><div class="mval">'+p.born+'</div></div>' +
-      '<div><div class="mkey">Died</div><div class="mval">'+p.died+'</div></div>' +
-      '<div><div class="mkey">Language</div><div class="mval">'+p.lang+'</div></div>' +
-      '<div><div class="mkey">Style</div><div class="mval">'+p.styles.join(', ')+'</div></div>' +
-    '</div>' +
-    '<p class="mbio">'+p.bio+'</p>' +
-    '<div class="mvlabel">Celebrated Verses</div>' + shersHtml;
-  document.getElementById('modal-bg').classList.add('open');
-}
-function closeModal() { document.getElementById('modal-bg').classList.remove('open'); }
-function handleMbgClick(e) { if (e.target.id==='modal-bg') closeModal(); }
-
-// ═══════════════════════════════════════
-//  FEED
-// ═══════════════════════════════════════
-function onFdSearch() { fdSearch = document.getElementById('fd-search').value.toLowerCase(); renderFeed(); }
-function clrFdSearch() { document.getElementById('fd-search').value=''; fdSearch=''; renderFeed(); }
-
-function fFd(key, btn) {
-  fdFilter = key;
-  document.querySelectorAll('#fd-filters .chip').forEach(c => c.classList.remove('on'));
-  btn.classList.add('on');
+function setFSc(s){
+  feedSc=s;
+  ['all','urdu','hindi','eng'].forEach(k=>document.getElementById('fsb-'+k).classList.toggle('on',k===s));
   renderFeed();
 }
 
-function renderFeed() {
-  const all  = [...FEED_INIT, ...userPosts];
-  let list   = all;
-  if (fdFilter === 'user') list = all.filter(x => x.user);
-  else if (fdFilter !== 'all') list = all.filter(x => x.cat === fdFilter);
-  if (fdSearch) list = list.filter(x =>
-    x.author.toLowerCase().includes(fdSearch) ||
-    x.rtl.toLowerCase().includes(fdSearch) ||
-    x.ltr.toLowerCase().includes(fdSearch) ||
-    (x.trans||'').toLowerCase().includes(fdSearch)
+// ══════ EXPLORE ══════
+function onExS(){exS=document.getElementById('exs').value.toLowerCase();renderPoets(getPoetList());}
+function clrExS(){document.getElementById('exs').value='';exS='';renderPoets(getPoetList());}
+function fEx(k,btn){
+  exF=k;
+  document.querySelectorAll('#ex-f .chip').forEach(c=>c.classList.remove('on'));
+  btn.classList.add('on');
+  renderPoets(getPoetList());
+}
+function getPoetList(){
+  let l=POETS;
+  if(exF!=='all') l=l.filter(p=>p.rk===exF||p.styles.includes(exF)||p.eras.includes(exF));
+  if(exS) l=l.filter(p=>
+    p.name.toLowerCase().includes(exS)||p.region.toLowerCase().includes(exS)||
+    p.lang.toLowerCase().includes(exS)||p.tags.some(t=>t.toLowerCase().includes(exS))
   );
-  const feed = document.getElementById('feed');
-  feed.innerHTML = '';
-  if (!list.length) {
-    feed.innerHTML = '<p style="color:rgba(245,234,212,.35);text-align:center;padding:52px;font-style:italic;">No verses found. Try a different search or filter.</p>';
-    return;
-  }
-  list.forEach((s, i) => {
-    const lk = likedSet.has(s.id);
-    const d  = document.createElement('div');
-    d.className = 'fcard';
-    d.style.animationDelay = (i * 0.07) + 's';
-    d.innerHTML =
-      '<div class="fcard-bg" style="background-image:url(\''+s.bg+'\')">' +
-        '<div class="fcard-ov" style="background:'+(OVS[s.ov]||OVS.dark)+'"></div>' +
-        '<div class="fcard-body">' +
-          (s.rtl ? '<div class="fcard-rtl">'+s.rtl+'</div>' : '') +
-          (s.ltr ? '<div class="fcard-ltr">'+s.ltr+'</div>' : '') +
-          (s.trans ? '<div class="fcard-trans">'+s.trans+'</div>' : '') +
-          '<div class="fcard-meta">' +
-            '<div><div class="fcard-author">— '+s.author+'</div>' +
-            (s.user?'<div class="fcard-comm">COMMUNITY POST</div>':'')+
-            '</div>' +
-            '<div class="fcard-acts">' +
-              '<button class="abtn'+(lk?' liked':'')+'" data-id="'+s.id+'" onclick="toggleLike(this)">'+
-                (lk?'❤️':'🤍')+' <span>'+(s.likes+(lk?1:0))+'</span>'+
-              '</button>' +
-              '<button class="abtn copy-btn">📋 Copy</button>' +
-              (s.user?'<button class="abtn del" onclick="delPost(\''+s.id+'\')">🗑 Delete</button>':'')+
-            '</div>' +
-          '</div>' +
-        '</div>' +
+  return l;
+}
+function renderPoets(list){
+  const g=document.getElementById('pgrid');
+  g.innerHTML='';
+  if(!list.length){g.innerHTML='<p class="empty">No poets found.</p>';return;}
+  list.forEach((p,i)=>{
+    const d=document.createElement('div');
+    d.className='pc';d.style.animationDelay=(i*0.05)+'s';
+    d.innerHTML=
+      '<div class="pc-img" style="background-image:url(\''+p.img+'\')"></div>'+
+      '<div class="pc-ov"></div>'+
+      '<button class="open-btn">Open Profile ↗</button>'+
+      '<div class="pc-bd">'+
+        '<div class="pc-reg">'+p.region+'</div>'+
+        '<div class="pc-name">'+p.name+'</div>'+
+        (p.nat?'<div class="pc-nat">'+p.nat+'</div>':'')+
+        (p.natH?'<div class="pc-nat deva">'+p.natH+'</div>':'')+
+        '<div class="pc-era">'+p.era+'</div>'+
+        '<div class="pctags">'+
+          p.styles.map(t=>'<span class="tag">'+t+'</span>').join('')+
+          p.tags.slice(0,3).map(t=>'<span class="tag">'+t+'</span>').join('')+
+        '</div>'+
       '</div>';
-    d.querySelector('.copy-btn').addEventListener('click', () => {
-      const txt = s.rtl || s.ltr || '';
-      navigator.clipboard.writeText(txt)
-        .then(() => showToast('Copied!'))
-        .catch(() => showToast('Select and copy manually'));
+    d.addEventListener('click',()=>openPoetPage(p));
+    g.appendChild(d);
+  });
+}
+
+// ══════ POET FULL PAGE ══════
+function openPoetPage(p){
+  document.getElementById('pp-breadname').textContent=p.name;
+  const bioHtml=Array.isArray(p.bio)?p.bio.map(b=>'<p>'+b+'</p>').join(''):'<p>'+p.bio+'</p>';
+  const worksHtml=p.works.map(w=>'<li>'+w+'</li>').join('');
+  const shersHtml=p.shers.map((s,i)=>{
+    const hasU=s.u&&s.u.trim(),hasH=s.h&&s.h.trim(),hasE=s.e&&s.e.trim();
+    return '<div class="pp-sher">'+
+      '<div class="pp-sher-num">#'+(i+1)+'</div>'+
+      (hasU?'<div class="sher-u">'+s.u+'</div>':'')+
+      (hasH?'<div class="sher-h">'+s.h+'</div>':'')+
+      (hasE?'<div class="sher-e">'+s.e+'</div>':'')+
+      (s.m?'<div class="sher-meaning">'+s.m+'</div>':'')+
+      '<div class="sher-acts">'+
+        '<button class="sher-act" onclick="copySher('+i+',\''+p.id+'\')">📋 Copy</button>'+
+        '<button class="sher-act" onclick="shareSher(\''+p.name+'\')">🔗 Share</button>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+
+  document.getElementById('pp-content').innerHTML=
+    // HERO
+    '<div class="pp-hero">'+
+      '<div class="pp-hero-bg" style="background-image:url(\''+p.img+'\')"></div>'+
+      '<div class="pp-hero-ov"></div>'+
+      '<div class="pp-hero-content">'+
+        '<div class="pp-portrait" style="background-image:url(\''+p.portrait+'\')"></div>'+
+        '<div class="pp-title">'+
+          '<div class="pp-name">'+p.name+'</div>'+
+          (p.nat?'<div class="pp-native">'+p.nat+'</div>':'')+
+          (p.natH?'<div class="pp-native deva">'+p.natH+'</div>':'')+
+          '<div class="pp-meta-row">'+
+            '<span class="pp-badge">'+p.region+'</span>'+
+            '<span class="pp-badge">'+p.era+'</span>'+
+            '<span class="pp-badge">'+p.lang+'</span>'+
+            p.styles.map(s=>'<span class="pp-badge">'+s+'</span>').join('')+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+    // BODY
+    '<div class="pp-body">'+
+      '<div class="pp-left">'+
+        '<div class="pp-section-title">Biography</div>'+
+        '<div class="pp-bio">'+bioHtml+'</div>'+
+        (p.timeline?'<div style="background:rgba(201,168,76,.06);border-left:2px solid var(--gold);padding:12px;border-radius:0 4px 4px 0;margin-bottom:24px;">'+
+          '<div style="font-family:Cinzel,serif;font-size:.5rem;letter-spacing:.15em;color:var(--gold);margin-bottom:6px;">TIMELINE</div>'+
+          '<div class="pp-timeline">'+p.timeline+'</div>'+
+        '</div>':'')+
+        '<div class="pp-section-title">Selected Verses ('+p.shers.length+')</div>'+
+        '<div class="pp-shers">'+shersHtml+'</div>'+
+      '</div>'+
+      '<div class="pp-right">'+
+        '<div class="pp-card">'+
+          '<div class="pp-section-title" style="margin-bottom:10px;">Quick Facts</div>'+
+          '<div class="pp-fact"><span class="pp-fk">Born</span><span class="pp-fv">'+p.born+'</span></div>'+
+          '<div class="pp-fact"><span class="pp-fk">Died</span><span class="pp-fv">'+p.died+'</span></div>'+
+          '<div class="pp-fact"><span class="pp-fk">Language</span><span class="pp-fv">'+p.lang+'</span></div>'+
+          '<div class="pp-fact"><span class="pp-fk">Style</span><span class="pp-fv">'+p.styles.join(', ')+'</span></div>'+
+          '<div class="pp-fact"><span class="pp-fk">Region</span><span class="pp-fv">'+p.region+'</span></div>'+
+        '</div>'+
+        '<div class="pp-card">'+
+          '<div class="pp-section-title" style="margin-bottom:10px;">Major Works</div>'+
+          '<ul class="pp-works-list">'+worksHtml+'</ul>'+
+        '</div>'+
+        '<div class="pp-card">'+
+          '<div class="pp-section-title" style="margin-bottom:10px;">Tags</div>'+
+          '<div style="display:flex;gap:5px;flex-wrap:wrap;">'+
+            p.tags.map(t=>'<span class="tag" style="padding:4px 9px;font-size:.52rem;">'+t+'</span>').join('')+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+
+  // Store current poet for copy functions
+  window._currentPoet=p;
+
+  // Show poet page
+  document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));
+  document.getElementById('page-poet').classList.add('on');
+  document.querySelectorAll('.ntab').forEach(b=>b.classList.remove('on'));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function copySher(idx,pid){
+  const p=window._currentPoet;
+  if(!p) return;
+  const s=p.shers[idx];
+  const txt=[s.u,s.h,s.e].filter(Boolean).join('\n');
+  navigator.clipboard.writeText(txt).then(()=>toast('Copied!')).catch(()=>toast('Select & copy manually'));
+}
+function shareSher(name){toast('Sharing '+name+'\'s verse...');}
+
+// ══════ MAP ══════
+function renderRegions(){
+  const g=document.getElementById('rgrid');g.innerHTML='';
+  REGIONS.forEach(r=>{
+    const cnt=POETS.filter(p=>p.rk===r.k).length;
+    const d=document.createElement('div');d.className='rcard';
+    d.innerHTML='<div class="rbg" style="background-image:url(\''+r.img+'\')">'+
+      '<div class="rov"><div class="rn">'+r.name+'</div><div class="rs">'+r.sub+'</div>'+
+      (cnt?'<div class="rc">'+cnt+' Poet'+(cnt!==1?'s':'')+'</div>':'')+
+      '</div></div>';
+    d.addEventListener('click',()=>{
+      gTab('explore');
+      setTimeout(()=>{const btn=document.querySelector('#ex-f .chip[data-f="'+r.k+'"]');if(btn)fEx(r.k,btn);},80);
     });
+    g.appendChild(d);
+  });
+}
+
+// ══════ FEED ══════
+function onFdS(){fdS=document.getElementById('fds').value.toLowerCase();renderFeed();}
+function clrFdS(){document.getElementById('fds').value='';fdS='';renderFeed();}
+function fFd(k,btn){fdF=k;document.querySelectorAll('#fd-f .chip').forEach(c=>c.classList.remove('on'));btn.classList.add('on');renderFeed();}
+
+function renderFeed(){
+  const all=[...FEED_INIT,...userPosts];
+  let list=all;
+  if(fdF==='user') list=all.filter(x=>x.user);
+  else if(fdF!=='all') list=all.filter(x=>x.cat===fdF);
+  if(fdS) list=list.filter(x=>
+    x.author.toLowerCase().includes(fdS)||
+    (x.u||'').toLowerCase().includes(fdS)||
+    (x.h||'').toLowerCase().includes(fdS)||
+    (x.e||'').toLowerCase().includes(fdS)||
+    (x.trans||'').toLowerCase().includes(fdS)
+  );
+  const feed=document.getElementById('feed');feed.innerHTML='';
+  if(!list.length){feed.innerHTML='<p style="color:rgba(245,234,212,.3);text-align:center;padding:48px;font-style:italic;">No verses found.</p>';return;}
+  list.forEach((s,i)=>{
+    const lk=likedSet.has(s.id);
+    const d=document.createElement('div');d.className='fcard';d.style.animationDelay=(i*0.055)+'s';
+    const showU=(feedSc==='all'||feedSc==='urdu')&&s.u;
+    const showH=(feedSc==='all'||feedSc==='hindi')&&s.h;
+    const showE=(feedSc==='all'||feedSc==='eng')&&s.e;
+    d.innerHTML=
+      '<div class="fbg" style="background-image:url(\''+s.bg+'\')">'+
+        '<div class="fov" style="background:'+(OVS[s.ov]||OVS.dark)+'"></div>'+
+        '<div class="fbod">'+
+          (showU?'<div class="v-u">'+s.u+'</div>':'')+
+          (showH?'<div class="v-h">'+s.h+'</div>':'')+
+          (showE?'<div class="v-e">'+s.e+'</div>':'')+
+          (s.trans?'<div class="v-t">'+s.trans+'</div>':'')+
+          '<div class="fmeta">'+
+            '<div><div class="fauth">— '+s.author+'</div>'+(s.user?'<div class="fcomm">COMMUNITY POST</div>':'')+'</div>'+
+            '<div class="facts">'+
+              '<button class="ab'+(lk?' liked':'')+'" data-id="'+s.id+'" onclick="togLike(this)">'+
+                (lk?'❤️':'🤍')+' <span>'+(s.likes+(lk?1:0))+'</span></button>'+
+              '<button class="ab copy-btn">📋</button>'+
+              (s.user?'<button class="ab del" onclick="delPost(\''+s.id+'\')">🗑</button>':'')+
+            '</div>'+
+          '</div>'+
+        '</div>'+
+      '</div>';
+    const txt=s.u||s.h||s.e||'';
+    d.querySelector('.copy-btn').addEventListener('click',()=>
+      navigator.clipboard.writeText(txt).then(()=>toast('Copied!')).catch(()=>toast('Select & copy manually'))
+    );
     feed.appendChild(d);
   });
 }
 
-function toggleLike(btn) {
-  const id  = btn.dataset.id;
-  const sp  = btn.querySelector('span');
-  const cur = parseInt(sp.textContent);
-  if (likedSet.has(id)) {
-    likedSet.delete(id); btn.classList.remove('liked');
-    btn.firstChild.textContent = '🤍'; sp.textContent = cur - 1;
-  } else {
-    likedSet.add(id); btn.classList.add('liked');
-    btn.firstChild.textContent = '❤️'; sp.textContent = cur + 1;
-  }
+function togLike(btn){
+  const id=btn.dataset.id,sp=btn.querySelector('span'),cur=parseInt(sp.textContent);
+  if(likedSet.has(id)){likedSet.delete(id);btn.classList.remove('liked');btn.firstChild.textContent='🤍';sp.textContent=cur-1;}
+  else{likedSet.add(id);btn.classList.add('liked');btn.firstChild.textContent='❤️';sp.textContent=cur+1;}
 }
+function delPost(id){userPosts=userPosts.filter(p=>p.id!==id);renderFeed();toast('Deleted.');}
 
-function delPost(id) {
-  userPosts = userPosts.filter(p => p.id !== id);
-  renderFeed();
-  showToast('Post deleted.');
-}
-
-// ═══════════════════════════════════════
-//  CREATE / PUBLISH  ← second main fix ←
-// ═══════════════════════════════════════
-function renderBgPicker() {
-  const picker = document.getElementById('bg-picker');
-  BG_LIST.forEach((bg, i) => {
-    const d = document.createElement('div');
-    d.className = 'bg-opt' + (i===0?' sel':'');
-    d.style.backgroundImage = 'url(\''+bg.u+'\')';
-    d.setAttribute('data-l', bg.l);
-    d.addEventListener('click', () => {
-      document.querySelectorAll('.bg-opt').forEach(o => o.classList.remove('sel'));
-      d.classList.add('sel');
-      selBg = bg.u;
-      updatePreview();
-    });
-    picker.appendChild(d);
+// ══════ CREATE ══════
+function renderBgPicker(){
+  const p=document.getElementById('bgp');
+  BG_LIST.forEach((bg,i)=>{
+    const d=document.createElement('div');
+    d.className='bgo'+(i===0?' sel':'');
+    d.style.backgroundImage='url(\''+bg.u+'\')';
+    d.setAttribute('data-l',bg.l);
+    d.addEventListener('click',()=>{document.querySelectorAll('.bgo').forEach(o=>o.classList.remove('sel'));d.classList.add('sel');selBg=bg.u;updPv();});
+    p.appendChild(d);
   });
 }
-
-function handleBgUpload(e) {
-  const file = e.target.files[0]; if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => { selBg = ev.target.result; updatePreview(); showToast('Custom background applied!'); };
-  reader.readAsDataURL(file);
+function onBgUp(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{selBg=ev.target.result;updPv();toast('Custom background applied!');};r.readAsDataURL(f);}
+function setDir(d){
+  verseDir=d;const ta=document.getElementById('c-verse');
+  ta.classList.remove('rtl','deva','ltr');ta.classList.add(d);
+  ta.placeholder=d==='rtl'?'یہاں اپنی شاعری لکھیں...':d==='deva'?'यहाँ अपनी शायरी लिखें...':'Write your verse here...';
+  ['rtl','deva','ltr'].forEach(k=>document.getElementById('d-'+k).classList.toggle('on',k===d));
+  ta.focus();updPv();
 }
-
-function clrField(id) {
-  document.getElementById(id).value = '';
-  updatePreview();
-}
-
-function updatePreview() {
-  const verse = (document.getElementById('c-verse')||{}).value || '';
-  const ov    = (document.getElementById('c-overlay')||{}).value || 'dark';
-  const pbg   = document.getElementById('preview-bg');
-  const pov   = document.getElementById('preview-ov');
-  const pt    = document.getElementById('preview-text');
-  if (pbg) pbg.style.backgroundImage = 'url(\''+selBg+'\')';
-  if (pov) pov.style.background = OVS[ov] || OVS.dark;
-  if (pt) {
-    pt.classList.remove('rtl','ltr');
-    pt.classList.add(verseDir);
-    pt.textContent = verse.trim() || (verseDir==='rtl' ? 'آپ کی شاعری یہاں نظر آئے گی' : 'Your verse will appear here...');
+function clrF(id){document.getElementById(id).value='';updPv();}
+function updPv(){
+  const v=(document.getElementById('c-verse')||{}).value||'';
+  const ov=(document.getElementById('c-ov')||{}).value||'dark';
+  const pb=document.getElementById('pv-bg'),po=document.getElementById('pv-ov'),pt=document.getElementById('pv-t');
+  if(pb) pb.style.backgroundImage='url(\''+selBg+'\')';
+  if(po) po.style.background=OVS[ov]||OVS.dark;
+  if(pt){
+    pt.classList.remove('rtl','deva','ltr');pt.classList.add(verseDir);
+    pt.textContent=v.trim()||(verseDir==='rtl'?'آپ کی شاعری یہاں نظر آئے گی':verseDir==='deva'?'आपकी शायरी यहाँ दिखेगी':'Your verse will appear here...');
   }
 }
-
-function submitPost() {
-  const author = document.getElementById('c-author').value.trim() || 'Anonymous';
-  const verse  = document.getElementById('c-verse').value.trim();
-  const trans  = document.getElementById('c-trans').value.trim();
-  const cat    = document.getElementById('c-cat').value;
-  const ov     = document.getElementById('c-overlay').value;
-
-  if (!verse) { showToast('Please write something first!'); return; }
-
-  // store as rtl or ltr depending on current direction
-  const post = {
-    id:    'u' + Date.now(),
-    rtl:   verseDir === 'rtl' ? verse : '',
-    ltr:   verseDir === 'ltr' ? verse : '',
-    trans, author, bg: selBg, cat, ov,
-    likes: 0, user: true
-  };
-
-  userPosts.unshift(post);
-
-  // reset form
-  document.getElementById('c-author').value = '';
-  document.getElementById('c-verse').value  = '';
-  document.getElementById('c-trans').value  = '';
-  updatePreview();
-  showToast('✦ Your verse has been published!');
-
-  // switch to feed and show community posts
-  setTimeout(() => {
-    switchTab('feed');
-    fdFilter = 'user';
-    document.querySelectorAll('#fd-filters .chip').forEach(c => c.classList.remove('on'));
-    document.querySelector('#fd-filters .chip[data-f="user"]').classList.add('on');
-    renderFeed();        // ← called AFTER state is updated — fixes the publish bug
-  }, 1200);
+function submit(){
+  const auth=document.getElementById('c-auth').value.trim()||'Anonymous';
+  const verse=document.getElementById('c-verse').value.trim();
+  const trans=document.getElementById('c-trans').value.trim();
+  const cat=document.getElementById('c-cat').value;
+  const ov=document.getElementById('c-ov').value;
+  if(!verse){toast('Please write something first!');return;}
+  userPosts.unshift({
+    id:'u'+Date.now(),
+    u:verseDir==='rtl'?verse:'',h:verseDir==='deva'?verse:'',e:verseDir==='ltr'?verse:'',
+    trans,author:auth,bg:selBg,cat,ov,likes:0,user:true
+  });
+  ['c-auth','c-verse','c-trans'].forEach(id=>{document.getElementById(id).value='';});
+  updPv();toast('✦ Your verse has been published!');
+  setTimeout(()=>{
+    gTab('feed');fdF='user';
+    document.querySelectorAll('#fd-f .chip').forEach(c=>c.classList.remove('on'));
+    document.querySelector('#fd-f .chip[data-f="user"]').classList.add('on');
+    renderFeed();
+  },1200);
 }
 
-// ═══════════════════════════════════════
-//  MUSIC PLAYER
-// ═══════════════════════════════════════
-function renderPlaylist() {
-  const pl = document.getElementById('plist');
-  pl.innerHTML = '';
-  TRACKS.forEach((t, i) => {
-    const d = document.createElement('div');
-    d.className = 'plitem' + (i===trackIdx?' on':'');
-    d.innerHTML = '<div class="pldot"></div><div style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t.title+'</div>';
-    d.addEventListener('click', () => { trackIdx=i; playTrack(); });
+// ══════ PLAYER ══════
+function renderPlaylist(){
+  const pl=document.getElementById('plist');pl.innerHTML='';
+  TRACKS.forEach((t,i)=>{
+    const d=document.createElement('div');d.className='pli'+(i===tidx?' on':'');
+    d.innerHTML='<div class="pdot"></div><div style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t.title+'</div>';
+    d.addEventListener('click',()=>{tidx=i;playT();});
     pl.appendChild(d);
   });
 }
-
-function playTrack() {
-  isPlaying = true;
-  document.getElementById('playbtn').textContent = '⏸';
-  document.getElementById('pnow').textContent = TRACKS[trackIdx].title;
-  document.getElementById('pstatus').textContent = '▶ Playing via YouTube popup';
-  document.querySelectorAll('.plitem').forEach((el,i) => el.classList.toggle('on', i===trackIdx));
-  if (ytWin && !ytWin.closed) ytWin.close();
-  ytWin = window.open(TRACKS[trackIdx].url,'YTMusicPop','width=500,height=340,top=60,left=60,toolbar=no,menubar=no,scrollbars=no,resizable=yes');
-  if (!ytWin) { document.getElementById('pstatus').textContent = '⚠ Allow popups to hear music'; showToast('Allow popups in your browser for music!'); }
-  clearInterval(simInt); simProg = 0;
-  simInt = setInterval(() => {
-    simProg = (simProg + 0.22) % 100;
-    document.getElementById('progfill').style.width = simProg + '%';
-    if (simProg >= 99) { clearInterval(simInt); setTimeout(nextTrack, 900); }
-  }, 200);
+function playT(){
+  isPlay=true;
+  document.getElementById('playbtn').textContent='⏸';
+  document.getElementById('pnow').textContent=TRACKS[tidx].title;
+  document.getElementById('pst').textContent='▶ via YouTube popup';
+  document.querySelectorAll('.pli').forEach((el,i)=>el.classList.toggle('on',i===tidx));
+  if(ytWin&&!ytWin.closed) ytWin.close();
+  ytWin=window.open(TRACKS[tidx].url,'YTM','width=500,height=340,top=60,left=60,toolbar=no,menubar=no,scrollbars=no');
+  if(!ytWin){document.getElementById('pst').textContent='⚠ Allow popups';toast('Allow popups in your browser!');}
+  clearInterval(simInt);simP=0;
+  simInt=setInterval(()=>{simP=(simP+0.2)%100;document.getElementById('pf').style.width=simP+'%';if(simP>=99){clearInterval(simInt);setTimeout(nextT,800);}},200);
 }
+function togPlay(){if(isPlay){isPlay=false;document.getElementById('playbtn').textContent='▶';document.getElementById('pst').textContent='⏸ Paused';clearInterval(simInt);if(ytWin&&!ytWin.closed){ytWin.close();ytWin=null;}}else playT();}
+function nextT(){tidx=shufOn?Math.floor(Math.random()*TRACKS.length):(tidx+1)%TRACKS.length;renderPlaylist();if(isPlay)playT();else document.getElementById('pnow').textContent=TRACKS[tidx].title;}
+function prevT(){tidx=(tidx-1+TRACKS.length)%TRACKS.length;renderPlaylist();if(isPlay)playT();else document.getElementById('pnow').textContent=TRACKS[tidx].title;}
+function togShuf(){shufOn=!shufOn;document.getElementById('shufbtn').style.color=shufOn?'var(--gold)':'';toast(shufOn?'Shuffle ON':'Shuffle OFF');}
+function seekP(e){const r=e.currentTarget.getBoundingClientRect();simP=((e.clientX-r.left)/r.width)*100;document.getElementById('pf').style.width=simP+'%';}
+function togMini(){miniP=!miniP;document.getElementById('player').classList.toggle('mini',miniP);document.getElementById('ptog').textContent=miniP?'♪':'—';}
 
-function togglePlay() {
-  if (isPlaying) {
-    isPlaying = false;
-    document.getElementById('playbtn').textContent = '▶';
-    document.getElementById('pstatus').textContent = '⏸ Paused';
-    clearInterval(simInt);
-    if (ytWin && !ytWin.closed) { ytWin.close(); ytWin = null; }
-  } else {
-    playTrack();
-  }
-}
-
-function nextTrack() {
-  trackIdx = shuffleOn ? Math.floor(Math.random()*TRACKS.length) : (trackIdx+1)%TRACKS.length;
-  renderPlaylist();
-  if (isPlaying) playTrack();
-  else document.getElementById('pnow').textContent = TRACKS[trackIdx].title;
-}
-
-function prevTrack() {
-  trackIdx = (trackIdx-1+TRACKS.length)%TRACKS.length;
-  renderPlaylist();
-  if (isPlaying) playTrack();
-  else document.getElementById('pnow').textContent = TRACKS[trackIdx].title;
-}
-
-function toggleShuffle() {
-  shuffleOn = !shuffleOn;
-  document.getElementById('shufflebtn').style.color = shuffleOn ? 'var(--gold)' : '';
-  showToast(shuffleOn ? 'Shuffle ON' : 'Shuffle OFF');
-}
-
-function seekProg(e) {
-  const bar = document.getElementById('progbar')||e.currentTarget;
-  const r = e.currentTarget.getBoundingClientRect();
-  simProg = ((e.clientX - r.left) / r.width) * 100;
-  document.getElementById('progfill').style.width = simProg + '%';
-}
-
-function toggleMini() {
-  miniPlayer = !miniPlayer;
-  document.getElementById('player').classList.toggle('mini', miniPlayer);
-  document.getElementById('ptoggle').textContent = miniPlayer ? '♪' : '—';
-}
-
-// ═══════════════════════════════════════
-//  PETALS
-// ═══════════════════════════════════════
-function spawnPetals() {
-  const c = document.getElementById('petals');
-  for (let i=0; i<14; i++) {
-    const p = document.createElement('div');
-    p.className = 'petal';
-    const sz = (5 + Math.random()*7)+'px';
-    p.style.cssText = 'left:'+Math.random()*100+'vw;width:'+sz+';height:'+sz+
-      ';animation-duration:'+(10+Math.random()*14)+'s;animation-delay:'+Math.random()*14+'s;' +
-      'background:'+(Math.random()>.5?'var(--rose)':'var(--gold)')+
-      ';opacity:'+(0.25+Math.random()*0.38)+';';
+// ══════ PETALS ══════
+function spawnPetals(){
+  const c=document.getElementById('petals');
+  for(let i=0;i<12;i++){
+    const p=document.createElement('div');p.className='petal';
+    const sz=(5+Math.random()*7)+'px';
+    p.style.cssText='left:'+Math.random()*100+'vw;width:'+sz+';height:'+sz+
+      ';animation-duration:'+(10+Math.random()*14)+'s;animation-delay:'+Math.random()*14+'s;'+
+      'background:'+(Math.random()>.5?'var(--rose)':'var(--gold)')+';opacity:'+(0.2+Math.random()*0.34);
     c.appendChild(p);
   }
 }
 
-// ═══════════════════════════════════════
-//  TOAST
-// ═══════════════════════════════════════
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  clearTimeout(t._t);
-  t._t = setTimeout(() => t.classList.remove('show'), 2800);
+// ══════ TOAST ══════
+function toast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2800);
 }
 </script>
-
 </body>
 </html>
